@@ -34,11 +34,11 @@ The app currently uses the files listed in the original request: lecture PDFs, p
 
 ## Share With GitHub Pages
 
-This is a static site. Once the repository is pushed to GitHub, the workflow in `.github/workflows/pages.yml` publishes these app assets to GitHub Pages:
+This is a static site. Once the repository is pushed to GitHub, the workflow in `.github/workflows/pages.yml` publishes the built site to the `gh-pages` branch:
 
 - `index.html`
 - `src/`
 - `data/study-data.json`
 - `vendor/mathjax/`
 
-The workflow does not regenerate `data/study-data.json`, so manual summary edits stay in the shared site. If you later rebuild the extracted dataset, review `data/study-data.generated.json` first and only replace the live file intentionally.
+After the first push, set GitHub Pages to serve from the `gh-pages` branch at the repository root. The workflow does not regenerate `data/study-data.json`, so manual summary edits stay in the shared site. If you later rebuild the extracted dataset, review `data/study-data.generated.json` first and only replace the live file intentionally.
