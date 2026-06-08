@@ -141,7 +141,7 @@ function applyHashRoute() {
 }
 
 function topicHref(topicId) {
-  return `${location.origin}${location.pathname}#topic/${encodeURIComponent(topicId)}`;
+  return `#topic/${encodeURIComponent(topicId)}`;
 }
 
 function escapeHtml(value) {
