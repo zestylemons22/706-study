@@ -1,0 +1,1803 @@
+{
+  "metadata": {
+    "generatedBy": "tools/extract_study_data.py",
+    "course": "MECHENG 705 study support",
+    "initialAssignmentDocument": {
+      "status": "not_provided",
+      "note": "No initial assignment document was found in the workspace or supplied file list. Add it to SOURCE_PDFS if it should become a cited source."
+    },
+    "counts": {
+      "topics": 11,
+      "flashcards": 111,
+      "examPrompts": 18
+    },
+    "sources": [
+      {
+        "name": "1 Signal Integrity.pdf",
+        "area": "Signal Integrity",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\1 Signal Integrity.pdf",
+        "exists": true
+      },
+      {
+        "name": "2. Probing.pdf",
+        "area": "Probing",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\2. Probing.pdf",
+        "exists": true
+      },
+      {
+        "name": "3 Electromagnetic Interference (EMI).pdf",
+        "area": "EMI/EMC",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\3 Electromagnetic Interference (EMI).pdf",
+        "exists": true
+      },
+      {
+        "name": "4 Electromagnetic Compatibility (EMC).pdf",
+        "area": "EMI/EMC",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\4 Electromagnetic Compatibility (EMC).pdf",
+        "exists": true
+      },
+      {
+        "name": "5 Circuit and System Design Guideline.pdf",
+        "area": "EMI Design",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\5 Circuit and System Design Guideline.pdf",
+        "exists": true
+      },
+      {
+        "name": "6 Grounding and EMI.pdf",
+        "area": "Grounding",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\6 Grounding and EMI.pdf",
+        "exists": true
+      },
+      {
+        "name": "7 Design Guidelines and Methodology - Mitigating EMI Issues.pdf",
+        "area": "Shielding",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\7 Design Guidelines and Methodology - Mitigating EMI Issues.pdf",
+        "exists": true
+      },
+      {
+        "name": "8. Intro to Power Electronics.pdf",
+        "area": "Power Electronics",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\8. Intro to Power Electronics.pdf",
+        "exists": true
+      },
+      {
+        "name": "9. Devices Thermal Consideration.pdf",
+        "area": "Thermal",
+        "path": "C:\\Users\\Alex\\Downloads\\Kean__Thermal__SI_and_EMC__export\\9. Devices Thermal Consideration.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705 DC Section 1 - Introduction.pdf",
+        "area": "Control",
+        "path": "C:\\Users\\Alex\\Downloads\\Salim__Digital_Control__export\\MECHENG705 DC Section 1 - Introduction.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705 DC Section 2 - Continuous to Discrete Controllers.pdf",
+        "area": "Control",
+        "path": "C:\\Users\\Alex\\Downloads\\Salim__Digital_Control__export\\MECHENG705 DC Section 2 - Continuous to Discrete Controllers.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705 DC Section 3 - Design in the Digital Domain.pdf",
+        "area": "Control",
+        "path": "C:\\Users\\Alex\\Downloads\\Salim__Digital_Control__export\\MECHENG705 DC Section 3 - Design in the Digital Domain.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705 DC Section 4 - Model Identification.pdf",
+        "area": "Model ID",
+        "path": "C:\\Users\\Alex\\Downloads\\Salim__Digital_Control__export\\MECHENG705 DC Section 4 - Model Identification.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705 DC Section 5 - IFT.pdf",
+        "area": "IFT",
+        "path": "C:\\Users\\Alex\\Downloads\\Salim__Digital_Control__export\\MECHENG705 DC Section 5 - IFT.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705 DC Section 6 - Implementation.pdf",
+        "area": "Control",
+        "path": "C:\\Users\\Alex\\Downloads\\Salim__Digital_Control__export\\MECHENG705 DC Section 6 - Implementation.pdf",
+        "exists": true
+      },
+      {
+        "name": "Practice Questions.pdf",
+        "area": "Exam Practice",
+        "path": "C:\\Users\\Alex\\Downloads\\Practice Questions.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG 705 2023 Final Exam.pdf",
+        "area": "Past Exam",
+        "path": "C:\\Users\\Alex\\Downloads\\MECHENG 705 2023 Final Exam.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705_S1_2024.pdf",
+        "area": "Past Exam",
+        "path": "C:\\Users\\Alex\\Downloads\\MECHENG705_S1_2024.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705_S1_2025.pdf",
+        "area": "Past Exam",
+        "path": "C:\\Users\\Alex\\Downloads\\MECHENG705_S1_2025.pdf",
+        "exists": true
+      },
+      {
+        "name": "MECHENG705_rote_memorisation_cards.xlsx",
+        "area": "Flashcards",
+        "path": "C:\\Users\\Alex\\Downloads\\MECHENG705_rote_memorisation_cards.xlsx",
+        "exists": true
+      }
+    ]
+  },
+  "topics": [
+    {
+      "id": "control",
+      "title": "Digital Control",
+      "area": "Control",
+      "whyItMatters": "Most exam questions ask you to move between continuous-time plants, sampled models, and digital controller designs without mixing the rules.",
+      "keyIdeas": [
+        "Digital control separates three objects that must not be mixed up: the continuous plant G(s), the held actuator signal u(t), and the sampled controller/model signals u[k], y[k].",
+        "A discrete controller is only updated at t = k Ts, but the real plant still evolves continuously between samples.",
+        "Use Euler/Tustin substitutions only when the question explicitly asks for a discretisation approximation rule, such as forward, backward, bilinear, or Tustin.",
+        "Use the ZOH pulse-transfer formula when the question asks for the discrete/pulse transfer function of a continuous plant with zero-order hold.",
+        "The ZOH turns a sequence of controller outputs into a staircase input by holding each u[k] constant over k Ts <= t < (k + 1) Ts.",
+        "Discrete stability is judged in the z-plane: every closed-loop pole must satisfy |z| < 1.",
+        "A continuous pole s = -a maps to z = e^(-a Ts); a continuous unstable pole s = +a maps to z = e^(a Ts), outside the unit circle.",
+        "Sampling time is chosen from the design purpose: faster for discretising an already-designed continuous controller, less strict for direct digital-domain design.",
+        "Pole placement is mostly coefficient matching: derive the actual closed-loop denominator, write the desired denominator from overshoot/settling specs, then equate coefficients.",
+        "Deadbeat control forces finite-sample settling in the sampled model, but may require aggressive control effort and can hide intersample ripple."
+      ],
+      "formulas": [
+        "Forward Euler: s approx (z - 1) / Ts",
+        "Backward Euler: s approx (z - 1) / (z Ts)",
+        "Tustin / bilinear: s approx (2 / Ts) * (z - 1) / (z + 1)",
+        "ZOH pulse transfer: P(z) = ((z - 1) / z) Z{G(s) / s}",
+        "Useful Z-transform: Z{1/s} = z / (z - 1)",
+        "Useful Z-transform: Z{1/(s + a)} = z / (z - e^(-a Ts))",
+        "Continuous pole mapping: s = -a -> z = e^(-a Ts)",
+        "Discrete stability: stable iff all poles satisfy |z_i| < 1",
+        "Sample time from bandwidth in rad/s: Ts = 2 pi / (N omega_b)",
+        "Practice-rule sample multiples: N approx 30 for discretising a continuous controller, N approx 10 for direct digital design",
+        "Second-order bandwidth: omega_BW = omega_0 sqrt(1 - 2 zeta^2 + sqrt(4 zeta^4 - 4 zeta^2 + 2))",
+        "Overshoot to damping ratio: zeta = -ln(OS) / sqrt(pi^2 + ln(OS)^2), where OS is decimal",
+        "2 percent settling approximation: ST approx 4 / (zeta omega_0)",
+        "Desired 2nd-order discrete denominator: D(z) = z^2 - 2 e^(-zeta omega_0 Ts) cos(omega_0 sqrt(1 - zeta^2) Ts) z + e^(-2 zeta omega_0 Ts)",
+        "Unity feedback closed loop: Y(z)/R(z) = C(z)P(z) / (1 + C(z)P(z))",
+        "Continuous PID: C_PID(s) = Kp + Ki/s + Kd s",
+        "Common discrete PI form: C(z) = ((Kp + Ki) z - Kp) / (z - 1)",
+        "Deadbeat target: Y(z)/R(z) = 1 / z^m",
+        "Deadbeat controller: C(z) = (1 / P(z)) * (1 / (z^m - 1))"
+      ],
+      "examMoves": [
+        "First classify the question wording: Euler/Tustin approximation, ZOH pulse transfer, sample-time choice, pole placement, implementation, or deadbeat.",
+        "For ZOH pulse transfer, always begin by writing ((z - 1)/z) Z{G(s)/s}; do not substitute s directly.",
+        "For Euler/Tustin questions, substitute for s, simplify G(z), then convert to z^-1 form before writing the difference equation.",
+        "For sample-time questions, identify omega_b from the -3 dB point or compute omega_BW from zeta and omega_0; then use Ts = 2 pi/(N omega).",
+        "For pole placement, calculate zeta and omega_0, choose Ts, write desired D(z), derive actual D(z), then match coefficients.",
+        "When converting to a difference equation, divide by the highest power of z so delays appear as z^-1 terms.",
+        "After finding a transfer function, sanity-check stability using |z| < 1 and check whether the DC gain makes physical sense.",
+        "For deadbeat questions, decide m, write the intended closed-loop target, and mention aggressive control effort or intersample ripple if asked for limitations."
+      ],
+      "sources": [
+        "MECHENG705 DC Section 1 - Introduction.pdf",
+        "MECHENG705 DC Section 2 - Continuous to Discrete Controllers.pdf",
+        "MECHENG705 DC Section 3 - Design in the Digital Domain.pdf",
+        "MECHENG705 DC Section 6 - Implementation.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "control-loop"
+    },
+    {
+      "id": "model-id",
+      "title": "Model Identification",
+      "area": "Model ID",
+      "whyItMatters": "Controller performance depends on the plant model, so model identification questions usually test assumptions, parameter fitting, and validation logic.",
+      "keyIdeas": [
+        "Model identification has two distinct stages: choose the model structure, then estimate the unknown parameters.",
+        "The chosen model structure encodes assumptions, such as linear friction, negligible inductance, constant motor constants, and operation away from saturation.",
+        "For a simple DC motor model, voltage balance links applied voltage, winding current, resistance, back EMF, and angular velocity.",
+        "Torque is proportional to armature current through the torque constant, usually treated as equal to the back-EMF constant in SI units.",
+        "The mechanical dynamics balance motor torque against viscous friction and inertia.",
+        "Some parameters can be estimated from steady-state tests, but inertia requires a dynamic test because it only appears during acceleration.",
+        "Stall/locked-rotor tests can estimate winding resistance because omega = 0 makes back EMF zero, but the rotor must not be blocked for long.",
+        "Validation is not the same as fitting: a model should be tested on data that was not used to identify the parameters.",
+        "Poor model fit should be explained by naming missing physics, such as Coulomb friction, saturation, nonlinear friction, supply limits, deadband, sensor delay, or neglected inductance.",
+        "Controller performance depends on model quality, especially when using pole placement or deadbeat designs that assume the plant model is accurate."
+      ],
+      "formulas": [
+        "Voltage equation: v(t) = Ra ia(t) + Kb omega(t)",
+        "Torque equation: tau(t) = Kt ia(t)",
+        "Mechanical equation: J domega/dt = tau(t) - B omega(t)",
+        "Locked rotor, omega = 0: Ra = V / I",
+        "Back EMF constant: Kb = (V - Ra I) / omega",
+        "Viscous friction at no-load steady state: B = tau / omega = Kt I / omega",
+        "At steady state, domega/dt = 0, so motor torque equals viscous friction torque",
+        "Simple model transfer idea: omega(s)/V(s) is first order if armature inductance is neglected",
+        "Time constant can be obtained from rise time or settling time of the speed step response",
+        "Prediction error = measured output - model output",
+        "Validation test: compare model response against separate measured data, not only the fitting data"
+      ],
+      "examMoves": [
+        "State the model assumptions before using equations, especially negligible inductance and linear viscous friction.",
+        "For resistance, set omega = 0 and use the locked-rotor voltage/current relationship.",
+        "For Kb, use no-load steady-state data after accounting for voltage drop across Ra.",
+        "For B, use no-load steady-state current to infer torque, then divide by steady speed.",
+        "For J, say a dynamic test is needed and relate it to the step-response time constant.",
+        "If given two operating points, equate the two Kb expressions to solve for Ra before solving Kb.",
+        "Keep units explicit: Ra in ohms, Kb in V/(rad/s), Kt in Nm/A, B in Nm/(rad/s), J in kg m^2.",
+        "If asked whether the model is good, discuss validation data and missing nonlinear effects rather than only quoting the numerical error."
+      ],
+      "sources": [
+        "MECHENG705 DC Section 4 - Model Identification.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "model-id"
+    },
+    {
+      "id": "ift",
+      "title": "Iterative Feedback Tuning",
+      "area": "IFT",
+      "whyItMatters": "IFT is a data-driven tuning method, so the key is explaining what is updated, what cost is minimized, and why closed-loop data matters.",
+      "keyIdeas": [
+        "Iterative Feedback Tuning is a data-driven method for improving controller parameters using closed-loop experimental data.",
+        "IFT does not require an explicit plant model P(z); it assumes a fixed controller structure C(z, rho) and updates the parameter vector rho.",
+        "The parameter vector rho contains the tunable gains, for example rho = [Kp, Ki, Kd]^T for a PID controller.",
+        "The objective function defines what better means; in the slides it is based on squared tracking error over N samples.",
+        "The error convention in the IFT slides is e(rho,k) = y(rho,k) - r(k), which is the negative of the usual r - y convention.",
+        "IFT is gradient-based optimisation: estimate how the cost changes with each parameter, then update the parameters to reduce the cost.",
+        "The gradient components tell how sensitive the objective is to each gain; the Hessian approximates curvature/coupling between gains.",
+        "A Hessian/Newton-style update can move faster than plain gradient descent, but is more sensitive to noisy or poor curvature estimates.",
+        "Because IFT uses real experiments, safety, actuator saturation, noise, repeatability, and step-size selection matter.",
+        "IFT is useful when accurate model identification is difficult but repeated controlled experiments are possible."
+      ],
+      "formulas": [
+        "Controller structure: u(k) = C(z, rho)(r(k) - y(k))",
+        "Parameter vector example: rho = [Kp, Ki, Kd]^T",
+        "IFT slide error convention: e(rho,k) = y(rho,k) - r(k)",
+        "Objective function: J(rho) = (1 / (2N)) sum_{k=1}^N e(rho,k)^2",
+        "Gradient idea: grad J = [dJ/d rho_1, dJ/d rho_2, ...]^T",
+        "Gradient update idea: rho_new = rho_old - alpha grad J",
+        "Newton-style update idea: rho_new = rho_old - H^-1 grad J",
+        "Hessian idea: H_ij = d^2 J / (d rho_i d rho_j)",
+        "Small step size improves safety but slows convergence; large step size can destabilise or overshoot the optimum"
+      ],
+      "examMoves": [
+        "Start by defining rho and the fixed controller structure being tuned.",
+        "Write the cost function before describing the update, because the cost defines the tuning goal.",
+        "Be explicit that the method uses closed-loop experimental data rather than a plant model.",
+        "When explaining derivatives, say they represent sensitivity of the performance cost to each controller parameter.",
+        "If asked about the Hessian, say diagonal terms are curvature with respect to each parameter and off-diagonal terms are parameter coupling.",
+        "Include practical limitations: experiment noise, repeatability, safety, saturation, convergence, and need for cautious step size.",
+        "If asked why IFT is useful, contrast it with model-based pole placement: IFT can tune the real plant directly when the model is inaccurate or unavailable."
+      ],
+      "sources": [
+        "MECHENG705 DC Section 5 - IFT.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "ift"
+    },
+    {
+      "id": "signal-integrity",
+      "title": "Signal Integrity",
+      "area": "Signal Integrity",
+      "whyItMatters": "Signal integrity questions test whether you can connect fast digital edges to analog transmission-line behaviour.",
+      "keyIdeas": [
+        "Signal integrity is about whether a signal arrives at the receiver with acceptable amplitude, timing, edge shape, and noise margin.",
+        "Digital signals are physically analog waveforms, so finite rise time, ringing, reflections, loss, and noise matter.",
+        "A fast edge travelling along a PCB trace or cable behaves as an electromagnetic wave guided by the conductors and return path.",
+        "A trace becomes a transmission line when its physical length is a significant fraction of the signal edge electrical length.",
+        "Rise time is often more important than repetition frequency, because a low-frequency square wave with very fast edges still contains high-frequency content.",
+        "Characteristic impedance comes from distributed inductance and capacitance per unit length, not from DC resistance.",
+        "Impedance discontinuities at the source, load, connector, via, bend, or trace-width change cause partial reflections.",
+        "Reflections cause ringing, overshoot, undershoot, timing uncertainty, false triggering, and increased EMI.",
+        "Crosstalk occurs when electric or magnetic fields from one signal couple into a neighbouring signal path.",
+        "Ground bounce occurs when switching current through shared ground/package inductance shifts the local ground reference."
+      ],
+      "formulas": [
+        "Characteristic impedance: Z0 = sqrt(L0 / C0)",
+        "Velocity factor: VF = v / c = 1 / sqrt(epsilon_r)",
+        "Propagation velocity: v = VF * c",
+        "Electrical length of an edge: l_edge = v tr",
+        "Transmission-line rule of thumb: treat as transmission line if l >= l_edge / 10",
+        "Wavelength: lambda = c / f, or lambda = v / f in a dielectric",
+        "Alternative rule: treat as transmission line if interconnect length >= lambda / 8 of the relevant signal component",
+        "Rise-time bandwidth: BW = 0.35 / tr",
+        "Oscillating digital signal bandwidth rule: BW = 2.2 f_osc",
+        "RC 10-90 percent rise time: t_10-90 = 2.2 R C",
+        "Rise-time combination: tr_total = sqrt(tr1^2 + tr2^2 + ...)",
+        "Recover actual rise time: tr_actual = sqrt(tr_measured^2 - tr_instrument^2)",
+        "Reflection coefficient: Gamma = (ZL - Z0) / (ZL + Z0)",
+        "Matched load: ZL = Z0 gives Gamma = 0"
+      ],
+      "examMoves": [
+        "Check the fastest edge first; use the smaller of rise time and fall time for bandwidth questions.",
+        "For transmission-line questions, compute v = VF c, then compare cable/trace length with v tr / 10.",
+        "If source and load are both 50 ohms and the cable is 50 ohms, say the line is impedance matched and reflections are minimised.",
+        "If there is ringing or overshoot, look for impedance mismatch, long return path, probe inductance, or poor termination.",
+        "When suggesting fixes, match each fix to the mechanism: termination for reflections, spacing for crosstalk, ground plane for return path, shorter traces for delay/EMI.",
+        "For crosstalk, distinguish capacitive coupling from high dv/dt and inductive coupling from high di/dt/loop area.",
+        "For ground bounce, mention local ground reference movement rather than saying only that the signal is noisy.",
+        "Keep units consistent: ns, MHz, m/s, mm, and ohms."
+      ],
+      "sources": [
+        "1 Signal Integrity.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "trace"
+    },
+    {
+      "id": "probing",
+      "title": "Probing",
+      "area": "Probing",
+      "whyItMatters": "A measurement can create the fault you think you are observing, especially when probe capacitance or ground lead inductance disturbs a fast circuit.",
+      "keyIdeas": [
+        "An oscilloscope probe is not an ideal observer; it electrically loads the circuit being measured.",
+        "The probe input is approximately a high resistance in parallel with an input capacitance, so at high frequency the capacitive path can dominate.",
+        "Probe capacitance forms an RC low-pass with the source resistance and can slow measured rise time.",
+        "The oscilloscope/probe bandwidth limits the fastest edge that can be displayed accurately.",
+        "A long probe ground lead forms a loop with parasitic inductance, which can resonate with the probe capacitance.",
+        "Ground-lead ringing can make the oscilloscope show ringing that is caused by the measurement setup rather than the circuit.",
+        "Passive probes are convenient and robust but usually have higher capacitive loading and ground-loop issues.",
+        "Active probes usually reduce capacitive loading and are better for fast signals, but are more expensive and have lower voltage tolerance.",
+        "Cable/50-ohm probing is best for quantitative high-speed measurements when the circuit is designed for impedance matching.",
+        "Good high-speed probing minimises loop area by using a ground spring, coaxial connection, or properly terminated cable."
+      ],
+      "formulas": [
+        "Capacitive reactance magnitude: |Xc| = 1 / (2 pi f C)",
+        "Capacitor impedance: Zc = 1 / (j 2 pi f C) = -j / (2 pi f C)",
+        "Probe input model: Zin approx Rprobe parallel (1 / (j omega Cprobe))",
+        "RC rise time: t_10-90 = 2.2 R C",
+        "Total capacitance at a node: Ctotal = Csource + Cprobe + other parasitics",
+        "Bandwidth-rise relation: tr_scope approx 0.35 / BW",
+        "Measured rise-time combination: tr_measured = sqrt(tr_signal^2 + tr_scope^2 + tr_probe^2)",
+        "Actual rise time: tr_signal = sqrt(tr_measured^2 - tr_instrument^2)",
+        "LC ringing frequency: fr = 1 / (2 pi sqrt(L C))",
+        "Ground-loop inductance from ringing: L = 1 / ((2 pi fr)^2 C)",
+        "Inductive voltage error: v = L di/dt"
+      ],
+      "examMoves": [
+        "For probe-loading questions, draw the source resistance feeding source capacitance plus probe capacitance to ground.",
+        "If asked for rise time before and after probing, first calculate with source capacitance only, then with source plus probe capacitance.",
+        "For oscilloscope bandwidth questions, convert BW to instrument rise time using 0.35/BW.",
+        "For actual rise time, subtract the instrument contribution in quadrature, not linearly.",
+        "For ringing questions, assume probe ground inductance plus probe capacitance form an LC resonator unless another cause is specified.",
+        "When explaining a bad waveform, say the probe setup may have created the observed ringing/loading.",
+        "Recommended fixes: short ground spring, active probe, lower-capacitance probe, coaxial probing, 50-ohm termination where appropriate.",
+        "State when a passive probe is acceptable: low-speed sanity checks and higher-voltage measurements."
+      ],
+      "sources": [
+        "2. Probing.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "probe"
+    },
+    {
+      "id": "emi-emc",
+      "title": "EMI and EMC",
+      "area": "EMI/EMC",
+      "whyItMatters": "EMI/EMC questions are often solved by naming the source, coupling path, and victim, then breaking at least one part of that chain.",
+      "keyIdeas": [
+        "EMI is unwanted electromagnetic disturbance that can temporarily or permanently disrupt electronic circuits.",
+        "EMC is the ability of equipment to operate acceptably in its electromagnetic environment without causing or suffering unacceptable interference.",
+        "Every EMI problem requires a source, a coupling path, and a susceptible victim.",
+        "Emission describes electromagnetic energy leaving a device; susceptibility describes how easily a device is degraded; immunity describes how well it tolerates disturbance.",
+        "Conducted EMI travels through physical conductors such as power lines, signal cables, ground paths, and PCB traces.",
+        "Radiated EMI travels through space as an electromagnetic field and often involves cables/traces/loops acting as antennas.",
+        "Capacitive coupling is electric-field coupling and is driven mainly by high dv/dt and high-impedance victim nodes.",
+        "Inductive coupling is magnetic-field coupling and is driven mainly by high di/dt and large loop areas.",
+        "Good EMC design reduces the source, interrupts the path, or hardens the victim rather than relying on one generic fix.",
+        "Common EMI sources include fast clocks, RF transmitters, motors, switching regulators, relays, circuit breakers, lightning transients, and ESD."
+      ],
+      "formulas": [
+        "EMI chain: source -> coupling path -> victim",
+        "Mitigation logic: reduce source, block path, or harden victim",
+        "Conducted EMI: noise current/voltage travels through shared conductors",
+        "Radiated EMI: time-varying E and H fields couple through space",
+        "Capacitive coupling increases with dv/dt, parasitic capacitance, high victim impedance, and long parallel conductors",
+        "Inductive coupling increases with di/dt, mutual inductance, and victim loop area",
+        "Approximate frequency split from slides: conducted EMI often dominates below 30 MHz; radiated EMI often dominates above 30 MHz",
+        "Emission test idea: measure conducted and radiated disturbance leaving the device",
+        "Susceptibility/immunity test idea: expose the device to disturbance and check whether function degrades"
+      ],
+      "examMoves": [
+        "Start short-answer responses by naming the source, coupling path, and victim.",
+        "Classify the path as conducted, radiated, capacitive, or inductive before listing fixes.",
+        "For high dv/dt problems, suggest spacing, shielding, guard/ground traces, lower impedance, and filtering.",
+        "For high di/dt problems, suggest smaller loop area, close forward/return paths, twisted pairs, ground planes, snubbers, and flyback paths.",
+        "For conducted EMI, suggest filtering at connectors, decoupling, ferrites/chokes, and separate noisy/quiet supplies or returns.",
+        "For radiated EMI, suggest shielding, reduced loop/antenna length, ground planes, slower edges, and cable treatment.",
+        "Do not write 'add shielding' alone; specify whether it shields the source, the victim, or the coupling path.",
+        "Use the terms emission, susceptibility, and immunity precisely; do not interchange them."
+      ],
+      "sources": [
+        "3 Electromagnetic Interference (EMI).pdf",
+        "4 Electromagnetic Compatibility (EMC).pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "emi-chain"
+    },
+    {
+      "id": "emi-design",
+      "title": "EMI Design Methodology",
+      "area": "EMI Design",
+      "whyItMatters": "Design-guideline questions reward systematic reasoning: partition the system, control sources, manage return paths, and filter or shield intentionally.",
+      "keyIdeas": [
+        "EMI design methodology is systematic source-path-victim control applied at system, board, cable, and enclosure level.",
+        "System partitioning separates noisy power/high-speed sections from sensitive analogue/RF/measurement sections.",
+        "Control interference at the source where possible because it is usually easier than protecting every victim.",
+        "Minimise distribution of analogue signals; keep sensitive analogue paths short and local to reduce pickup.",
+        "PCB layout is three-dimensional: signal traces, return paths, power planes, layer stackup, cables, and enclosure all interact.",
+        "Solid ground planes reduce loop area, provide nearby high-frequency return paths, improve impedance control, and reduce radiation.",
+        "Trace separation and avoiding long parallel routes reduce capacitive and inductive crosstalk.",
+        "Avoid long return paths because they increase loop area, inductance, ground bounce, and magnetic-field radiation.",
+        "Do not choose a logic family faster than required; faster edges contain more high-frequency energy and generate more EMI.",
+        "Filtering and shielding should be placed intentionally, usually at interfaces or boundaries where noise enters/leaves a region."
+      ],
+      "formulas": [
+        "Design flow: specify EMC needs -> partition system -> reduce source -> control coupling path -> protect victim -> verify/test",
+        "Source control: reduce dv/dt, reduce di/dt, reduce loop area, add snubber/flyback path, choose suitable edge rate",
+        "Path control: increase spacing, reduce parallel runs, use ground plane, filter cables, shield enclosure, bond correctly",
+        "Victim protection: input filtering, differential signalling, shielding, lower impedance nodes, higher noise margin",
+        "Loop area reduction lowers magnetic coupling and radiated emissions",
+        "RC low-pass cutoff: fc = 1 / (2 pi R C)",
+        "RL low-pass cutoff idea: fc = R / (2 pi L)",
+        "LC cutoff forms commonly appear as fc proportional to 1 / sqrt(L C)",
+        "Impedance matching reduces ringing/distortion and therefore EMI",
+        "Ground plane effect: lower return-path impedance and smaller current-loop area"
+      ],
+      "examMoves": [
+        "Answer design questions in order: source, path, victim; avoid random fix lists.",
+        "Separate fixes by level: PCB layout, power distribution, cable/connector, enclosure, and component choice.",
+        "When you propose a ground plane, state that it provides a nearby low-impedance return path and reduces loop area.",
+        "When you propose filtering, state where it goes and where the unwanted current is diverted.",
+        "When you propose shielding, state whether it covers the source, victim, cable, or whole enclosure.",
+        "For mixed-signal systems, say to separate noisy digital/power regions from sensitive analogue regions while controlling return-current paths.",
+        "If asked about PCB turns, say 45-degree turns are preferred to right angles to reduce discontinuities and layout-related EMI issues.",
+        "If asked why a two-sided/multilayer PCB helps, mention ground plane, impedance control, return path, and reduced radiation."
+      ],
+      "sources": [
+        "5 Circuit and System Design Guideline.pdf",
+        "7 Design Guidelines and Methodology - Mitigating EMI Issues.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "method"
+    },
+    {
+      "id": "grounding",
+      "title": "Grounding and Return Paths",
+      "area": "Grounding",
+      "whyItMatters": "Ground is not a magic zero-voltage node at high frequency; exam answers should discuss impedance, return current, and shared paths.",
+      "keyIdeas": [
+        "Ground is not a magic zero-voltage node; it is a conductor network with resistance, inductance, capacitance, and frequency-dependent impedance.",
+        "A ground that measures low resistance at DC may still be a poor EMI ground at MHz/GHz frequencies.",
+        "Good EMI grounding provides a low-impedance path for high-frequency residual currents without spreading noise to victims.",
+        "Long wires, narrow traces, and coiled leads behave inductively at high frequency and can block EMI return currents.",
+        "Skin effect makes high-frequency current flow mainly near conductor surfaces, so geometry and surface area matter.",
+        "Wide, short, flat/braided grounding conductors have lower inductance than long thin round wires.",
+        "Shared ground impedance converts switching currents into voltage noise that other circuits see as reference movement.",
+        "Ground bounce is local ground-reference movement caused by high di/dt current through ground inductance.",
+        "Return current follows the lowest-impedance path; at high frequency this is usually directly under the signal trace on the nearest reference plane.",
+        "Poor grounding can cause false triggering, double clocking, corrupted data, analogue measurement error, and EMI propagation."
+      ],
+      "formulas": [
+        "High-frequency grounding is controlled by impedance, not only resistance",
+        "Inductive reactance: XL = 2 pi f L",
+        "Ground bounce: VGND approx LGND * dI/dt",
+        "Receiver sees effective input: Vin_effective = Vin - VGND",
+        "Good EMI ground requirement: low impedance at high frequency",
+        "Skin effect idea: high-frequency current crowds toward conductor surface",
+        "Lower inductance geometry: shorter length, greater width, smaller loop area",
+        "Ground objective: safety plus signal reference plus low-impedance EMI return without channelling noise into victims"
+      ],
+      "examMoves": [
+        "If a question says the ground measures near 0 ohms, explain that this only proves low DC resistance, not low RF impedance.",
+        "For grounding fixes, prefer short/wide/flat straps, ground planes, low-inductance bonds, and controlled return paths.",
+        "For ground bounce, write VGND approx L dI/dt and explain local reference shift.",
+        "When discussing logic errors, say the receiver compares the input to its local bouncing ground.",
+        "Do not use single-point versus multi-point grounding slogans without relating the choice to frequency and return-current path.",
+        "For high-speed PCB signals, state that return current should flow directly under the trace on a continuous reference plane.",
+        "If noisy power currents and sensitive analogue returns share impedance, identify it as common-impedance coupling.",
+        "Use decoupling capacitors to provide local high-frequency current loops, reducing supply/ground bounce."
+      ],
+      "sources": [
+        "6 Grounding and EMI.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "ground"
+    },
+    {
+      "id": "shielding",
+      "title": "Shielding and Filtering",
+      "area": "Shielding",
+      "whyItMatters": "Shielding only works when it is continuous, bonded correctly, and used with filters so cables do not bypass the enclosure.",
+      "keyIdeas": [
+        "Shielding reduces coupling by reflecting, absorbing, or redirecting electromagnetic energy.",
+        "Shielding effectiveness depends on frequency, material conductivity, permeability, thickness, source distance, field type, seams, apertures, and cable penetrations.",
+        "An EM wave has electric field E, magnetic field H, and wave impedance Zw = E/H.",
+        "In the far field, the wave behaves approximately like a plane wave with Zw = 377 ohms.",
+        "Near-field electric sources are high-impedance and often wire/dipole-like; near-field magnetic sources are low-impedance and often current-loop/transformer-like.",
+        "High-conductivity metals such as copper and aluminium are effective for high-frequency electric/plane-wave shielding when the enclosure is continuous and well bonded.",
+        "Low-frequency magnetic fields are difficult to shield with copper/aluminium because skin depth is large and permeability is low.",
+        "High-permeability materials such as steel, ferrite, or mu-metal-type materials are better for low-frequency magnetic shielding because they redirect magnetic flux.",
+        "A shield with slots, seams, holes, or unfiltered cables can leak significantly even if the material itself is good.",
+        "Filters should be placed at shield boundaries so conducted noise does not bypass the shield through cables."
+      ],
+      "formulas": [
+        "Wave impedance: Zw = E / H",
+        "Far-field plane-wave impedance: Zw = 377 ohms",
+        "Near/far boundary for point source: far field when d > lambda / (2 pi)",
+        "Wavelength: lambda = c / f",
+        "Shielding effectiveness: SE_dB = 20 log10(E_without / E_with)",
+        "Magnetic shielding effectiveness: SE_dB = 20 log10(H_without / H_with)",
+        "Total shielding for thick shields: SE approx R + A",
+        "Skin depth: delta = 1 / sqrt(pi f mu sigma)",
+        "Permeability: mu = mu0 mu_r",
+        "Absorption loss: A(dB) = 8.7 t / delta",
+        "Required thickness from absorption target: t = A delta / 8.7",
+        "Reflection loss idea: R depends on mismatch between wave impedance Zw and shield surface impedance",
+        "Aperture slit rule: SE approx 20 log10(lambda / (2d))",
+        "Aperture round-hole rule: SE approx 40 log10(lambda / (2d))",
+        "Multiple apertures correction: subtract 20 log10(n) from aperture SE"
+      ],
+      "examMoves": [
+        "First identify the field type: electric, magnetic, near-field, far-field, conducted, or radiated.",
+        "For copper/aluminium at RF, use skin depth, absorption loss, reflection loss, and aperture continuity ideas.",
+        "For 50/60 Hz magnetic fields, explain why high-permeability material is preferred over copper.",
+        "For thickness questions, calculate delta first, then use A = 8.7 t/delta or t = A delta/8.7.",
+        "For total SE questions, calculate absorption and reflection separately, then add in dB if the formula applies.",
+        "For aperture questions, use the longest aperture dimension d and compare it with wavelength.",
+        "Always mention seams, bonds, and cable penetrations when discussing practical shield failure.",
+        "For filters, state that they must be at the enclosure boundary so noise current returns to the shield/chassis instead of entering the protected region."
+      ],
+      "sources": [
+        "7 Design Guidelines and Methodology - Mitigating EMI Issues.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "shield"
+    },
+    {
+      "id": "power-electronics",
+      "title": "Power Electronics",
+      "area": "Power Electronics",
+      "whyItMatters": "Power electronics connects switching, heat, EMI, and control implementation, so questions often ask for side effects as well as ideal converter behaviour.",
+      "keyIdeas": [
+        "Power electronics devices often operate as switches to reduce dissipation compared with linear operation.",
+        "Switching reduces conduction-time losses but creates fast voltage and current transitions that generate EMI.",
+        "Linear regulators are simple and quiet because they do not intentionally switch, but they waste power as heat.",
+        "Switching regulators are efficient but create conducted and radiated noise at the switching frequency and harmonics.",
+        "Fast dV/dt can capacitively couple noise into nearby nodes; fast dI/dt can inductively couple noise and cause ground bounce.",
+        "Inductive loads such as solenoids and relays store energy, so interrupting current creates large voltage spikes unless a safe current path is provided.",
+        "A flywheel/flyback diode provides a path for inductive current after switch-off, limiting voltage across the transistor.",
+        "Diode reverse recovery, MOSFET/FET transitions, gate-drive speed, and parasitic inductance/capacitance affect real switching waveforms.",
+        "Power-converter layout should minimise the high-di/dt switching loop area and keep power currents away from sensitive measurement circuits.",
+        "Thermal design and EMI design are linked: switching frequency, edge speed, device choice, and snubbers affect both losses and noise."
+      ],
+      "formulas": [
+        "Conduction loss idea for saturated switch: P approx VCE(sat) * IC for BJT saturation",
+        "MOSFET conduction loss idea: P approx I^2 RDS(on)",
+        "Linear regulator loss idea: P_loss = (Vin - Vout) Iout",
+        "Inductor voltage relation: v = L di/dt",
+        "Stored inductor energy: E = 0.5 L I^2",
+        "High dV/dt increases capacitive EMI coupling",
+        "High dI/dt increases inductive EMI coupling and ground bounce",
+        "Flyback diode purpose: provide a current decay path and clamp voltage during switch-off",
+        "Switching regulator noise occurs at switching frequency plus harmonics"
+      ],
+      "examMoves": [
+        "For transistor driver questions, identify current path when on and the inductive current path when switched off.",
+        "When explaining the flywheel diode, explicitly say the solenoid current cannot stop instantly because of stored magnetic energy.",
+        "For thermal calculations involving a switch, calculate dissipated transistor power before using thermal resistance.",
+        "For EMI questions, connect switching transitions to dV/dt, dI/dt, harmonics, and loop area.",
+        "For regulator comparisons, say linear is quieter but inefficient; switching is efficient but noisier and needs filtering/layout care.",
+        "For motor/solenoid drivers, mention snubbers, flyback diode, short loops, decoupling, and separation from sensitive signals.",
+        "Do not over-focus on SCR/TRIAC detail unless asked; for this exam, transistor drivers, inductive loads, EMI, and thermal effects are higher yield.",
+        "If given a device characteristic graph, use the relevant saturation voltage/current point rather than assuming ideal zero voltage drop."
+      ],
+      "sources": [
+        "8. Intro to Power Electronics.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "power"
+    },
+    {
+      "id": "thermal",
+      "title": "Thermal Design",
+      "area": "Thermal",
+      "whyItMatters": "Thermal questions usually reduce to a heat-flow path: generated power must move from junction to package, heatsink, and ambient air.",
+      "keyIdeas": [
+        "Electrical power dissipated in a semiconductor becomes heat generated at the junction.",
+        "Device reliability and lifetime decrease as junction temperature increases.",
+        "Thermal resistance measures opposition to heat flow and uses units of deg C/W.",
+        "Thermal paths behave like resistance networks: heat flow is analogous to current, temperature difference is analogous to voltage, and thermal resistance is analogous to electrical resistance.",
+        "Series thermal resistances add, such as junction-to-case plus case-to-ambient.",
+        "Junction-to-case resistance is internal to the package; case-to-ambient depends on mounting, heatsink, airflow, and thermal interface.",
+        "Safe operation is checked by calculating junction temperature and comparing it to the maximum junction temperature.",
+        "Allowable power dissipation decreases as ambient or case temperature increases.",
+        "A heatsink lowers case-to-ambient thermal resistance by increasing surface area and convection to air.",
+        "A heat pipe transports heat using evaporation, vapour flow, condensation, and liquid return.",
+        "A radiator uses a circulating coolant and heat exchanger, often with a fan, to reject heat away from the device.",
+        "Thermal design should be done together with electrical design because current, voltage drop, duty cycle, and switching losses determine heat generation."
+      ],
+      "formulas": [
+        "Temperature rise: Delta T = P_D * theta",
+        "Junction from ambient: T_J = T_A + theta_JA P_D",
+        "Junction from case: T_J = T_C + theta_JC P_D",
+        "Series thermal resistance: theta_JA = theta_JC + theta_CA",
+        "Safe if: T_J < T_J,max",
+        "Maximum power from ambient: P_D,max = (T_J,max - T_A) / theta_JA",
+        "Maximum power from case: P_D,max = (T_J,max - T_C) / theta_JC",
+        "Case temperature from junction relation: T_C = T_J - theta_JC P_D",
+        "Power in saturated BJT switch idea: P_D approx VCE(sat) IC plus any other relevant losses",
+        "Power in resistor/coil: P = I^2 R = V I = V^2 / R",
+        "Thermal unit check: W * deg C/W = deg C"
+      ],
+      "examMoves": [
+        "Draw the thermal path before calculating: junction -> case -> heatsink/interface -> ambient.",
+        "Identify whether the given temperature is ambient, case, heatsink, or junction temperature.",
+        "If theta_JC and theta_CA are given, add them before using ambient-temperature formulas.",
+        "If case temperature is given, use T_J = T_C + theta_JC P_D and do not add theta_CA unless needed.",
+        "For allowable power, rearrange the temperature formula and use the relevant temperature limit.",
+        "Always compare the calculated T_J with T_J,max and state safe/not safe.",
+        "Keep deg C, W, and deg C/W units visible to avoid mixing thermal resistance and temperature.",
+        "For 'three cooling methods', memorise radiator, heat pipe, heat sink, and give one advantage plus one disadvantage for each."
+      ],
+      "sources": [
+        "9. Devices Thermal Consideration.pdf",
+        "MECHENG705_rote_memorisation_cards.xlsx"
+      ],
+      "visual": "thermal"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card-001",
+      "question": "What are the three s→z approximation rules called?",
+      "answer": "Forward Euler, Backward Euler, and Bilinear/Tustin.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-002",
+      "question": "What is Forward Euler substitution?",
+      "answer": "s ≈ (z − 1)/Ts.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-003",
+      "question": "What is Backward Euler substitution?",
+      "answer": "s ≈ (z − 1)/(zTs).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-004",
+      "question": "What is Bilinear/Tustin substitution?",
+      "answer": "s ≈ (2/Ts)((z − 1)/(z + 1)).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-005",
+      "question": "When should you use Euler/Tustin substitution?",
+      "answer": "When the question says discretise using forward, backward, bilinear, or Tustin rule.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-006",
+      "question": "When should you NOT use Euler/Tustin?",
+      "answer": "When asked for a pulse transfer function with ZOH; use the ZOH formula instead.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-007",
+      "question": "What is the ZOH pulse-transfer formula?",
+      "answer": "P(z) = ((z − 1)/z) Z{G(s)/s}.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-008",
+      "question": "What does a pulse transfer function represent?",
+      "answer": "The z-domain relationship from input samples u[k] to output samples y[k], assuming sampled/held input to a continuous plant.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-009",
+      "question": "What does the ZOH physically do?",
+      "answer": "It holds each controller output constant over one sample interval.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-010",
+      "question": "What is the discrete stability condition?",
+      "answer": "All poles must satisfy |z| < 1.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-011",
+      "question": "How does a continuous pole s = −a map to z?",
+      "answer": "z = e^(−aTs).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-012",
+      "question": "How does a continuous unstable pole s = +a map to z?",
+      "answer": "z = e^(aTs), which is outside the unit circle for positive Ts.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-013",
+      "question": "What Z-transform table entry is used for 1/s?",
+      "answer": "Z{1/s} = z/(z − 1).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-014",
+      "question": "What Z-transform table entry is used for 1/(s+a)?",
+      "answer": "Z{1/(s+a)} = z/(z − e^(−aTs)).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-015",
+      "question": "What is the first step in ZOH plant discretisation?",
+      "answer": "Write G(s)/s before taking the Z-transform.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-016",
+      "question": "What is the common sample-time formula from bandwidth in rad/s?",
+      "answer": "Ts = 2π/(Nωb).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-017",
+      "question": "What sampling multiple is used for discretising a continuous controller in the practice questions?",
+      "answer": "About 30× bandwidth.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-018",
+      "question": "What sampling multiple is used for direct digital-domain design in the practice questions?",
+      "answer": "About 10× bandwidth, though lectures also mention 10–20×.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-019",
+      "question": "What is the closed-loop bandwidth formula for a 2nd-order system?",
+      "answer": "ωBW = ω0√(1 − 2ζ² + √(4ζ⁴ − 4ζ² + 2)).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-020",
+      "question": "What formula converts overshoot to damping ratio?",
+      "answer": "ζ = −ln(OS)/√(π² + ln²(OS)), where OS is decimal.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-021",
+      "question": "What value should you use for 10% overshoot in the overshoot formula?",
+      "answer": "OS = 0.10, not 10.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-022",
+      "question": "What is the 2% settling-time approximation?",
+      "answer": "ST ≈ 4/(ζω0).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-023",
+      "question": "What is the continuous PID form?",
+      "answer": "CPID(s) = Kp + Ki/s + Kd s.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-024",
+      "question": "What does integral action do in PID?",
+      "answer": "It removes steady-state error for constant references/disturbances.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-025",
+      "question": "What does derivative action tend to do?",
+      "answer": "It damps overshoot but amplifies noise.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-026",
+      "question": "What is deadbeat control trying to achieve?",
+      "answer": "Finite-sample settling: ideally Y(z)/R(z) = 1/z^m.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-027",
+      "question": "What is the common deadbeat controller formula?",
+      "answer": "C(z) = (1/P(z)) · 1/(z^m − 1).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-028",
+      "question": "What does m mean in the deadbeat target 1/z^m?",
+      "answer": "The number of sample delays before the output reaches the target at sample instants.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-029",
+      "question": "What is a major warning about deadbeat control?",
+      "answer": "It can be aggressive and may cause intersample ripple or large control effort.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-030",
+      "question": "What is bumpless transfer?",
+      "answer": "Switching from manual/open-loop to closed-loop control without a sudden jump in actuator output.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-031",
+      "question": "What is the discrete controller recursion idea?",
+      "answer": "u[k] depends on present/past errors and past controller outputs.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-032",
+      "question": "What is the closed-loop transfer function for unity feedback?",
+      "answer": "Y/R = CP/(1 + CP).",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-033",
+      "question": "What is the main pole-placement algebra step?",
+      "answer": "Match the actual closed-loop denominator coefficients to the desired denominator coefficients.",
+      "topic": "Control",
+      "topicId": "control",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-034",
+      "question": "What are the two broad steps in model identification?",
+      "answer": "Choose the model form, then identify its parameters.",
+      "topic": "Model ID",
+      "topicId": "model-id",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-035",
+      "question": "What DC motor parameter is found by locking the rotor briefly?",
+      "answer": "Winding resistance Ra = V/I, because ω = 0.",
+      "topic": "Model ID",
+      "topicId": "model-id",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-036",
+      "question": "What is the no-load back-EMF constant formula idea?",
+      "answer": "Kb = (V − RaI)/ω at steady state.",
+      "topic": "Model ID",
+      "topicId": "model-id",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-037",
+      "question": "How is linear viscous friction B found at no-load steady state?",
+      "answer": "B = τ/ω = KtI/ω.",
+      "topic": "Model ID",
+      "topicId": "model-id",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-038",
+      "question": "Which DC motor parameter needs a dynamic test?",
+      "answer": "Rotational inertia J.",
+      "topic": "Model ID",
+      "topicId": "model-id",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-039",
+      "question": "What does IFT stand for?",
+      "answer": "Iterative Feedback Tuning.",
+      "topic": "IFT",
+      "topicId": "ift",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-040",
+      "question": "What is the key selling point of IFT?",
+      "answer": "It tunes controller parameters using experimental data without requiring a plant model.",
+      "topic": "IFT",
+      "topicId": "ift",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-041",
+      "question": "What is the IFT parameter vector usually called?",
+      "answer": "ρ (rho).",
+      "topic": "IFT",
+      "topicId": "ift",
+      "priority": "Low",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-042",
+      "question": "What is the typical IFT objective function form?",
+      "answer": "J(ρ) = (1/(2N)) Σ e(ρ,k)².",
+      "topic": "IFT",
+      "topicId": "ift",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-043",
+      "question": "In the IFT slides, what is unusual about the error sign?",
+      "answer": "e(ρ,k) = y(ρ,k) − r(k), the negative of the usual r−y convention.",
+      "topic": "IFT",
+      "topicId": "ift",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-044",
+      "question": "What are the three common cooling methods named in the thermal slides?",
+      "answer": "Radiators, heat pipes, and heat sinks.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-045",
+      "question": "What is thermal resistance measured in?",
+      "answer": "°C/W.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-046",
+      "question": "What is θJC?",
+      "answer": "Thermal resistance from junction to case.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-047",
+      "question": "What is θCA?",
+      "answer": "Thermal resistance from case to ambient air.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-048",
+      "question": "What is θJA if θJC and θCA are given?",
+      "answer": "θJA = θJC + θCA.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-049",
+      "question": "What is the junction temperature formula from ambient?",
+      "answer": "TJ = TA + θJA PD.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-050",
+      "question": "What is the maximum safe power formula from ambient?",
+      "answer": "PD,max = (TJ,max − TA)/θJA.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-051",
+      "question": "What is the thermal safety check?",
+      "answer": "Calculate TJ and compare it with TJ,max; safe if TJ < TJ,max.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-052",
+      "question": "What happens to allowable power as ambient temperature increases?",
+      "answer": "Allowable power decreases.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-053",
+      "question": "How does a heat sink cool a device?",
+      "answer": "It conducts heat from the device and dissipates it to surrounding air by convection/radiation.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-054",
+      "question": "How does a heat pipe cool a device?",
+      "answer": "It evaporates fluid at the hot end, transports vapour, condenses at the cool end, and returns liquid by wick/gravity.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-055",
+      "question": "How does a radiator cool a device?",
+      "answer": "It circulates coolant to a heat exchanger where heat is rejected to air, often with a fan.",
+      "topic": "Thermal",
+      "topicId": "thermal",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-056",
+      "question": "What is a flywheel/flyback diode for?",
+      "answer": "It gives inductive coil current a safe decay path when switching off, limiting voltage spikes.",
+      "topic": "Power Electronics",
+      "topicId": "power-electronics",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-057",
+      "question": "Why do switching regulators create EMI?",
+      "answer": "They create large dV/dt and dI/dt events at switching frequency and harmonics.",
+      "topic": "Power Electronics",
+      "topicId": "power-electronics",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-058",
+      "question": "What is the difference between linear and switching regulators for EMI?",
+      "answer": "Linear regulators do not rely on switching and generate less EMI; switching regulators are efficient but noisier.",
+      "topic": "Power Electronics",
+      "topicId": "power-electronics",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-059",
+      "question": "What is signal integrity?",
+      "answer": "The ability of a signal to propagate without unacceptable distortion/noise/loss.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-060",
+      "question": "Name common signal-integrity problems.",
+      "answer": "Ringing, crosstalk, reflections, overshoot, undershoot, and ground bounce.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-061",
+      "question": "When should a PCB trace be treated as a transmission line?",
+      "answer": "When its length is comparable to signal electrical length; rule of thumb: length ≥ about 1/10 electrical length.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-062",
+      "question": "What is characteristic impedance from L and C per unit length?",
+      "answer": "Z0 = √(L0/C0).",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-063",
+      "question": "What is the rise-time bandwidth formula?",
+      "answer": "BW = 0.35/tr.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-064",
+      "question": "For a digital signal with different rise and fall times, which edge sets the bandwidth?",
+      "answer": "The faster edge / smaller time.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-065",
+      "question": "What is the oscillating digital signal bandwidth rule?",
+      "answer": "BW = 2.2 fosc.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-066",
+      "question": "What is the RC 10–90% rise-time formula?",
+      "answer": "T10–90 = 2.2RC.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-067",
+      "question": "How do independent rise-time contributions combine?",
+      "answer": "tr,total = √(tr1² + tr2² + ...).",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-068",
+      "question": "How do you recover actual rise time from measured and instrument rise time?",
+      "answer": "tr,actual = √(tr,measured² − tr,instrument²).",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-069",
+      "question": "What is the LC resonant frequency formula?",
+      "answer": "fr = 1/(2π√(LC)).",
+      "topic": "Probing",
+      "topicId": "probing",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-070",
+      "question": "What causes oscilloscope probe ground-lead ringing?",
+      "answer": "Ground lead inductance resonating with probe/input capacitance.",
+      "topic": "Probing",
+      "topicId": "probing",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-071",
+      "question": "Why are passive probes risky for high-speed measurements?",
+      "answer": "They have larger capacitive loading and ground-loop issues.",
+      "topic": "Probing",
+      "topicId": "probing",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-072",
+      "question": "Why are active probes useful?",
+      "answer": "They usually have lower capacitive loading and are better for high-speed rough measurements.",
+      "topic": "Probing",
+      "topicId": "probing",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-073",
+      "question": "What is cable probing good for?",
+      "answer": "Quantitative measurements with little signal distortion when impedance matched.",
+      "topic": "Probing",
+      "topicId": "probing",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-074",
+      "question": "What is velocity factor?",
+      "answer": "VF = v/c = 1/√εr.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-075",
+      "question": "What is the approximate velocity factor of FR4 PCB?",
+      "answer": "About 0.5.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-076",
+      "question": "What is a typical velocity factor for many coax/two-wire cables?",
+      "answer": "About 0.66 to 0.80 depending on dielectric.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "Low",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-077",
+      "question": "What is wavelength?",
+      "answer": "λ = c/f.",
+      "topic": "Signal Integrity",
+      "topicId": "signal-integrity",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-078",
+      "question": "What does EMI stand for?",
+      "answer": "Electromagnetic interference.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-079",
+      "question": "What does EMC stand for?",
+      "answer": "Electromagnetic compatibility.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-080",
+      "question": "What is EMC?",
+      "answer": "Ability of equipment to function acceptably in its electromagnetic environment while limiting unwanted EM energy.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-081",
+      "question": "What are the three parts of an EMI problem?",
+      "answer": "Source, coupling path, and victim/susceptible device.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-082",
+      "question": "What are the two broad EMI coupling types?",
+      "answer": "Conducted and radiated.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-083",
+      "question": "Below roughly what frequency is conducted EMI usually predominant in the slides?",
+      "answer": "Below about 30 MHz.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-084",
+      "question": "Above roughly what frequency is radiated EMI usually predominant in the slides?",
+      "answer": "Above about 30 MHz.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-085",
+      "question": "Name common EMI sources.",
+      "answer": "RF signals, fast transitions/clocks, motors, power circuits, circuit breakers, lightning/transients, switching devices.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-086",
+      "question": "What is emission?",
+      "answer": "EM energy emanating from a source.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-087",
+      "question": "What is susceptibility?",
+      "answer": "Tendency/inability of equipment to perform without degradation in an EM disturbance.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-088",
+      "question": "What is immunity?",
+      "answer": "How much EM pollution/electromagnetic disturbance a device can tolerate before degradation.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-089",
+      "question": "What are the four EMC levels?",
+      "answer": "System, equipment/subsystem, circuit-board, and component levels.",
+      "topic": "EMI/EMC",
+      "topicId": "emi-emc",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-090",
+      "question": "Why is a good EMI ground different from a DC ground?",
+      "answer": "It must have low impedance at high frequency, not just low DC resistance.",
+      "topic": "Grounding",
+      "topicId": "grounding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-091",
+      "question": "Why is an ohmmeter not enough to verify EMI grounding?",
+      "answer": "It tests low-frequency/DC resistance, not high-frequency impedance.",
+      "topic": "Grounding",
+      "topicId": "grounding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-092",
+      "question": "What is skin effect?",
+      "answer": "At high frequency, current flows mainly on the outside/surface of a conductor.",
+      "topic": "Grounding",
+      "topicId": "grounding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-093",
+      "question": "How do you reduce high-frequency grounding inductance?",
+      "answer": "Use short, wide, flat/braided conductors and good length-to-width ratio.",
+      "topic": "Grounding",
+      "topicId": "grounding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-094",
+      "question": "What is ground bounce?",
+      "answer": "A shift in local ground reference caused by transient currents through ground inductance/impedance.",
+      "topic": "Grounding",
+      "topicId": "grounding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-095",
+      "question": "What is the ground-bounce relation?",
+      "answer": "VGND ≈ LGND · dI/dt.",
+      "topic": "Grounding",
+      "topicId": "grounding",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-096",
+      "question": "Why does ground bounce cause logic errors?",
+      "answer": "The receiver sees Vin − VGND rather than Vin relative to an ideal ground.",
+      "topic": "Grounding",
+      "topicId": "grounding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-097",
+      "question": "What are E-field and H-field units?",
+      "answer": "E-field: V/m. H-field: A/m.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-098",
+      "question": "What is wave impedance?",
+      "answer": "ZW = E/H.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-099",
+      "question": "What is the far-field plane-wave impedance?",
+      "answer": "377 Ω.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-100",
+      "question": "What is the near/far-field boundary rule for a point source?",
+      "answer": "Far field when d > λ/(2π).",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-101",
+      "question": "What are E-fields associated with in near-field examples?",
+      "answer": "High impedance sources, often wires/dipoles.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-102",
+      "question": "What are H-fields associated with in near-field examples?",
+      "answer": "Low impedance sources, current loops/transformer-like sources.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-103",
+      "question": "What is skin depth?",
+      "answer": "δ = 1/√(π f μ σ).",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-104",
+      "question": "What is absorption loss formula?",
+      "answer": "A(dB) = 8.7(t/δ).",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-105",
+      "question": "What is total shielding effectiveness approximation?",
+      "answer": "SE ≈ R + A, reflection plus absorption loss.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-106",
+      "question": "Why is copper/aluminium poor for low-frequency magnetic shielding?",
+      "answer": "They have high conductivity but low permeability, so they do not redirect low-frequency magnetic flux well.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-107",
+      "question": "What materials are better for low-frequency magnetic shielding?",
+      "answer": "High-permeability materials such as steel, ferrite, or mu-metal-type materials.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-108",
+      "question": "What is usually good for high-frequency electric/plane-wave shielding?",
+      "answer": "High-conductivity metal such as copper or aluminium, with good enclosure continuity.",
+      "topic": "Shielding",
+      "topicId": "shielding",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-109",
+      "question": "What are common EMC PCB layout rules?",
+      "answer": "Solid ground planes, short return paths, trace separation, avoid right angles, reduce loop area, filter/shield source or victim.",
+      "topic": "EMI Design",
+      "topicId": "emi-design",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-110",
+      "question": "What does adding a ground plane do for EMI?",
+      "answer": "It reduces loop area/return-path impedance and can greatly reduce radiation.",
+      "topic": "EMI Design",
+      "topicId": "emi-design",
+      "priority": "High",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    },
+    {
+      "id": "card-111",
+      "question": "What is the source-control rule for EMI?",
+      "answer": "Control interference at the source first; shield/filter the culprit before chasing every victim.",
+      "topic": "EMI Design",
+      "topicId": "emi-design",
+      "priority": "Medium",
+      "source": "MECHENG705_rote_memorisation_cards.xlsx"
+    }
+  ],
+  "examPrompts": [
+    {
+      "id": "exam-001",
+      "prompt": "Q1. Suggest a suitable sample time for the following system when: \n𝐺(𝑠) = 𝑠 − 5\n(𝑠 + 6)(𝑠 + 7) \n \na) Discretizing a continuous time controller \nb) Directly designing in the digital domain \nc) Designing via pole placement with parameters 𝜁 = 0.8, 𝜔0 = ...",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Exam Practice",
+      "page": 1
+    },
+    {
+      "id": "exam-002",
+      "prompt": "Q2. Determine the pulse transfer functions for the following plants with sample time T \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) =\n𝑠+1\n𝑠+2 \nc) 𝐺(𝑠) ...",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Exam Practice",
+      "page": 1
+    },
+    {
+      "id": "exam-003",
+      "prompt": "Q3. Design a controller via pole placement to achieve a settling time of 0.5s and an overshoot of 10% for \nthe following plants \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) ...",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Exam Practice",
+      "page": 1
+    },
+    {
+      "id": "exam-004",
+      "prompt": "Q4. Design deadbeat and ripple-free deadbeat controllers for the following plants at T=0.1s \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) =\n𝑠+1\n𝑠+2 \nc) 𝐺(𝑠) ...",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Exam Practice",
+      "page": 1
+    },
+    {
+      "id": "exam-005",
+      "prompt": "Q5. Discretize the following transfer function using the backwards, forwards, and bilinear rule, and \nproduce a difference equation for each method \n𝐺(𝑠) = 15 + ...",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Exam Practice",
+      "page": 2
+    },
+    {
+      "id": "exam-006",
+      "prompt": "Q5) \n𝐺(𝑠) = 15 + 30\n𝑠 \nUsing forward rectangular rule: \n𝐺(𝑧) = 15 + 30𝑇\n𝑧 − 1 \n𝐺(𝑧) = 15𝑧 + (30𝑇 − 15)\n𝑧 − 1 \n𝑌(𝑧)\n𝑈(𝑧) = 15𝑧 + (30𝑇 − 15)\n𝑧 − 1 \n𝑌(𝑧)(𝑧 − 1) = 𝑈(𝑧)(15𝑧 + (30𝑇 − 15)) \n𝑧𝑌(𝑧)− 𝑌(𝑧) = 15𝑧𝑈(𝑧)+ (30𝑇 − 15)𝑈(𝑧) \n𝑌(𝑧)− 𝑧−1𝑌(𝑧) = 15𝑈(𝑧)+ (30𝑇 − 15)𝑧−1𝑈(𝑧) \n𝑦[𝑘] = 15𝑢[𝑘] + (30𝑇 − 15)𝑢[𝑘 − 1] + 𝑦[𝑘 − 1] \nUsing backward rectangular rule: \n𝐺(𝑧) = 15 + 30𝑧𝑇\n𝑧 − 1 \n𝐺(𝑧) = (15 + 30𝑇)𝑧 − 15\n𝑧 − 1 \n𝑌(𝑧)\n𝑈(𝑧) = (15 + 30𝑇)𝑧 − 15\n𝑧 − 1 \n𝑌(𝑧)(𝑧 − 1) = 𝑈(𝑧)((15 + 30𝑇)𝑧 − 15) \n𝑧𝑌(𝑧)− 𝑌(𝑧) = (15 + 30𝑇)𝑧𝑈(𝑧)− 15𝑈(𝑧) \n𝑌(𝑧)− 𝑧−1𝑌(𝑧) = (15 + 30𝑇)𝑈(𝑧)− 15𝑧−1𝑈(𝑧) \n𝑦[𝑘] = (15 + 30𝑇)𝑢[𝑘] − 15𝑢[𝑘 − 1] + 𝑦[𝑘 − 1] \nUsing bilinear rectangular rule: \n𝐺(𝑧) = 15 + 30𝑇(𝑧 + 1)\n2(𝑧 − 1) \n𝐺(𝑧) = 30(𝑧 − 1)+ 30𝑇(𝑧 + 1)\n2(𝑧 − 1) = 30𝑧 − 30 + 30𝑇𝑧 + 30𝑇\n2𝑧 − 2 = (30 + 30𝑇)𝑧 + (30𝑇 − 30)\n2𝑧 − 2 \n𝑌(𝑧)(2𝑧 − 2) = 𝑈(𝑧)((30 + 30𝑇)𝑧 + (30𝑇 − 30)) \n2𝑌(𝑧)− 2𝑧−1𝑌(𝑧) = (30 + 30𝑇)𝑈(𝑧)+ (30𝑇 − 30)𝑧−1𝑈(𝑧) \n𝑦[𝑘] = 0.5((30 + ...",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Exam Practice",
+      "page": 17
+    },
+    {
+      "id": "exam-007",
+      "prompt": "Q1. \nFor part (a) and (b), consider the continuous-time plant with the transfer function. \n \n𝐺𝐺(𝑠𝑠) = 3𝑠𝑠− 6\n𝑠𝑠2 − 𝑠𝑠− 6 \n \n(a) What is the corresponding pulse transfer function 𝐺𝐺(𝑧𝑧) when this plant is discretised in \ncombination with a zero-order hold and sampling time 𝑇𝑇? \n [9 marks] \n \n(b) With reference to the position of the poles, the unit circle in the 𝑧𝑧 domain, and the \nsampling time 𝑇𝑇, comment on the stability of 𝐺𝐺(𝑧𝑧). \n [3 marks] \n \n(c) Suggest a suitable sample time for the following system when discretising a continuous \ntime controller. The frequency response of 𝐺𝐺wn is shown below in Figure 1. Justify \nyour choice of sampling time. \n𝐺𝐺(𝑠𝑠) = 𝑠𝑠− 4\n(𝑠𝑠+ 5)(𝑠𝑠+ 6) \n \nFigure 1 \n [2 marks] \n \n(d) Discretise the following transfer function using the bilinear rule and produce a \ndifference equation \n𝐺𝐺(𝑠𝑠) = 15 + 10\n𝑠𝑠 \n [6 marks] \n \n-45\n-40\n-35\n-30\n-25\n-20\n-15\nMagnitude ...",
+      "topicId": "control",
+      "source": "MECHENG 705 2023 Final Exam.pdf",
+      "sourceArea": "Past Exam",
+      "page": 2
+    },
+    {
+      "id": "exam-008",
+      "prompt": "Q2. \nThe following controller structure in Figure 2 has been suggested for the plant 𝑃𝑃(𝑧𝑧) =\n1\n𝑧𝑧−0.75 \n \nFigure 2 \n \nYou need to choose values of 𝑘𝑘𝑝𝑝 and 𝑘𝑘𝑖𝑖 to achieve a 10% overshoot and 15s settling time for \na unit step input. \n \n(a) What is the closed loop pulse transfer function \n𝑌𝑌(𝑧𝑧)\n𝑅𝑅(𝑧𝑧) in terms of 𝑘𝑘𝑖𝑖 and 𝑘𝑘𝑝𝑝? \n [7 marks] \n \n(b) What should the denominator polynomial of the closed loop system 𝐷𝐷(𝑧𝑧) be to achieve \nthe desired settling time and overshoot? Assume sampling time 𝑇𝑇= 1𝑠𝑠. \n [6 marks] \n \n(c) Find values of 𝑘𝑘𝑖𝑖 and 𝑘𝑘𝑝𝑝 to achieve this response. \n [4 marks] \n \n(d) If a plant is simulated with a controller designed using this pole placement approach, is the \nresponse likely to closely match the designed overshoot and settling time and why? \n [3 ...",
+      "topicId": "control",
+      "source": "MECHENG 705 2023 Final Exam.pdf",
+      "sourceArea": "Past Exam",
+      "page": 3
+    },
+    {
+      "id": "exam-009",
+      "prompt": "Q3. \n(a) There are THREE common methods to cool electronic devices. Briefly discuss these \nTHREE techniques in terms of how the y cool the devices , their advantages, and their \ndisadvantages. \n [6 marks] \n \n(b) A driver consisting of an NPN transistor is used to control an electromagnetic coil , as \nshown in Figure 3(a) below. The transistor electrical characteristic is shown in Figure 3(b). \n \n(i) If a + 5V from a digital controller is connected to the input of the driver, calculate \nthe junction temperature of the transistor , and is it safe to operate if the ambient \ntemperature if 50℃? \n [10 marks] \n \n(ii) Explain why a flywheel diode is connected across the solenoid? \n [4 marks] \n \nThe parameters of the transistor is as follows: - \n \nθJC = 10℃/W; θCA = 58℃/W Tjmax = 150℃; VBE (sat) = 0.7V; VCE(sat) = 0.5V \n \n \n(a) \n \n(b) \nFigure ...",
+      "topicId": "control",
+      "source": "MECHENG 705 2023 Final Exam.pdf",
+      "sourceArea": "Past Exam",
+      "page": 4
+    },
+    {
+      "id": "exam-010",
+      "prompt": "Q4. \n(a) You are measuring a digital signal with an oscillating frequency of 500 MHz . The digital \nsignal has a rise and fall time of 1 ns and 0.5 ns , respectively. What is the minimum \nbandwidth of the oscilloscope to correctly observe this signal? \n [4 marks] \n \n(b) With respect to signal integrity, discuss what crosstalk and ground bounce are and how \nthese can be minimised. \n [6 marks] \n \n \n(c) A copper sheet shields an electronics circuit board from a 100 MHz electromagnetic \ninterference source 1 metre away. You are given the following parameters. \nAbsolute permeability, µ0: 4π ×10— 7 H/m \nRelative permeability of copper, µr: 1 \nConductivity of copper, σ: 5.7 × 107 S \n \n(i) What is the minimum thickness of the copper sheet so that the shielding \neffectiveness of absorption loss is at least 70 dB? \n \n [4 marks] \n \n(ii) Calculate the shielding effectiveness of reflection loss with ...",
+      "topicId": "model-id",
+      "source": "MECHENG 705 2023 Final Exam.pdf",
+      "sourceArea": "Past Exam",
+      "page": 5
+    },
+    {
+      "id": "exam-011",
+      "prompt": "Q1. \nFor parts (a) and (b), consider the continuous-time plant with the transfer function \n \n𝐺𝐺(𝑠𝑠) = 1\n𝑠𝑠 −1 \n \n(a) What is the corresponding pulse transfer function G(z) when this plant is discretised in \ncombination with a zero-order hold and sampling time T\ns ? \n (9 marks) \n \n(b) With reference to the position of the poles, the unit circle in the z domain, and the \nsampling time T\ns, comment on the stability of G(z). \n (3 marks) \n \n(c) Suggest two suitable sample times for a discrete controller for the following system \nG(s). One for discretising a continuous controller and one for a discrete controller \ndesign using a discretised plant model. The frequency response of G(s) is shown in \nFigure 1. Justify your choice of sampling times. \n𝐺𝐺(𝑠𝑠) = 1\n2𝑠𝑠+ 1 \n \n \nFigure 1 \n (4 marks) \n \n(d) Discretise the transfer function of a simple integrator \n𝑈𝑈(𝑠𝑠)\n𝑅𝑅(𝑠𝑠) =\n1\n𝑠𝑠 using the backward ...",
+      "topicId": "control",
+      "source": "MECHENG705_S1_2024.pdf",
+      "sourceArea": "Past Exam",
+      "page": 2
+    },
+    {
+      "id": "exam-012",
+      "prompt": "Q2. \n(a) The closed loop system below (Figure 2) is given to control the plant P(z) using a P -\ncontroller. \n \nFigure 2 \n \nCreate a difference equation for the discrete controller, ensuring a bumpless switching \nfrom manual plant control to closed-loop control at the time t0. Bumpless means that if \nthe system output y(t\n0) equals the desired out y ref(t0), no jump in the actuator value u \nmust happen for the first controller output. \n (5 marks) \n \n(b) The plant characterised by the continuous transfer function 𝑃𝑃(𝑠𝑠) =\n1\n𝑠𝑠−1 should be \nstabilised with a discrete proportional controller using a discretised model of the plant. \nChoose k\np = 2 for the controller. For which sampling times Ts is the closed loop system \nstable? Provide calculations. \n (8 marks) \n \n \n(c) If the transfer function for the plant is 𝐺𝐺(𝑧𝑧) =\n1−𝑒𝑒−3𝑇𝑇𝑇𝑇\n𝑧𝑧−𝑒𝑒−3𝑇𝑇𝑇𝑇. \nDesign for Ts = 0.1s a Deadbeat controller and ...",
+      "topicId": "control",
+      "source": "MECHENG705_S1_2024.pdf",
+      "sourceArea": "Past Exam",
+      "page": 3
+    },
+    {
+      "id": "exam-013",
+      "prompt": "Q3. \n(a) There are THREE common methods to cool electronic devices. Briefly discuss these \nTHREE techniques in terms of how the y cool the devices, their advantages, and their \ndisadvantages. \n (6 marks) \n(b) A driver consisting of an NPN transistor is used to control an electromagnetic solenoid \n(Rsolenoid = 10 Ω), as shown in Figure 3(a) below. The transistor electrical characteristic \nis shown in Figure 3(b). \n \n(i) If a + 5V from a digital controller is connected to the input of the driver, calculate \nthe junction temperature of the transistor , and is it safe to operate if the ambient \ntemperature is 50℃? \n (10 marks) \n \n(ii) Explain why a flywheel diode is connected across the solenoid. (4 marks) \nThe parameters of the transistor are as follows: - \n \nθJC = 10℃/W; θCA = 20℃/W Tjmax = 150℃; VBE (sat) = 0.7V; VCE(sat) = 0.5V \n \n \n(a) \n \n(b) \nFigure ...",
+      "topicId": "control",
+      "source": "MECHENG705_S1_2024.pdf",
+      "sourceArea": "Past Exam",
+      "page": 4
+    },
+    {
+      "id": "exam-014",
+      "prompt": "Q4. \n(a) You are measuring a digital signal with an oscillating frequency of 250 MHz. The \ndigital signal has a rise and fall time of 1 ns and 0.5 ns , respectively. What is the \nminimum bandwidth of the oscilloscope to correctly observe this signal? \n (4 marks) \n \n(b) Why is a typical metallic shield made of copper or aluminium unable to shield the \nmagnetic field at low frequency, and what type of materials would be suitable? \n (6 marks) \n \n(c) A copper sheet shields an electronics circuit board from a 2.4 GHz electromagnetic \ninterference source 1 metre away. You are given the following parameters. \n \nAbsolute permeability, µ0: 4π ×10— 7 H/m \nRelative permeability of copper, µr: 1 \nConductivity of copper, σ: 5.7 × 107 S \n \n(i) What is the minimum thickness of the copper sheet so that the shielding \neffectiveness of absorption loss is at least 100 dB? \n (4 marks) \n \n(ii) What is the ...",
+      "topicId": "model-id",
+      "source": "MECHENG705_S1_2024.pdf",
+      "sourceArea": "Past Exam",
+      "page": 5
+    },
+    {
+      "id": "exam-015",
+      "prompt": "Q1. \n \nFor Q1(a-c) consider the continuous-time plant with the transfer function \n \n𝐺𝐺(𝑠𝑠) = 1\n𝑠𝑠− 2 \n \n(a) What is the corresponding discrete transfer function 𝐺𝐺 (𝑧𝑧) when this plant is \ndiscretised in combination with a zero-order hold and sampling time Ts? \n (8 marks) \n \n(b) With reference to the position of the poles, the unit circle in the 𝑧𝑧 domain, and the \nsampling time Ts, comment on the stability of 𝐺𝐺(𝑧𝑧). \n (3 marks) \n \n(c) The plant G(s) should be stabilised with a discrete proportional controller using a \ndiscretised model of the plant. Choose kp = 3 for the controller. For which sampling \ntimes is the closed-loop system stable? Show your calculations. \n(7 marks) \n(d) Suggest a suitable sample time for a discrete controller for the system P (s) if you \nare using a discretised plant model. The frequency response of 𝑃𝑃(𝑠𝑠) is shown below \n(see Figure 1). Justify your choice ...",
+      "topicId": "control",
+      "source": "MECHENG705_S1_2025.pdf",
+      "sourceArea": "Past Exam",
+      "page": 2
+    },
+    {
+      "id": "exam-016",
+      "prompt": "Q2. \nThe speed of a car is controlled by a PI controller shown in Figure 2.1. \n \nFigure 2.1: Closed-loop control of a car \n(a) What happens when the (well -tuned) closed -loop PI control is turned on at t 0? \nSketch the system output y (speed), error and controller output u for t0 - t4 in Figure \n2.2. \n(4 marks) \n \n \nFigure 2.2: Speed, speed error and actuator output \n \n(b) Create a difference equation for the discrete PI controller, ensuring a bumpless \nswitching from manual plant control to closed- loop control at time t 0. Bumpless \nmeans that if the system output y(t 0) equals the desired out yref(t0), no jump in the \nactuator value u must happen for the first controller output. \n(5 ...",
+      "topicId": "control",
+      "source": "MECHENG705_S1_2025.pdf",
+      "sourceArea": "Past Exam",
+      "page": 4
+    },
+    {
+      "id": "exam-017",
+      "prompt": "Q3. \n(a) A probe with 10 M Ω and 10 pf input resistance and capacitance, respectively, is \nconnected to an oscilloscope. The probe is connected to observe a signal, and the \nground wire is connected to the signal ground. The waveform displayed on the \noscilloscope screen is shown in Figure 3 below. \n \nFigure 3: Waveform display on the oscilloscope \nIt is suspected that the probe’s ground wire loop contributes to the ringing due to \nparasitic inductance. Estimate the parasitic inductance of the ground loop. \n(5 marks) \n(b) In a setup where the output capacitance and resistance of a signal source are 9 pF \nand 50 Ω, respectively, and an oscilloscope probe is connected to measure the rise \ntime of the signal. The oscilloscope probe has a capacitance of 10 pF and a \nresistance of 10 MΩ. Calculate \n(i) the rise time contributed by the output capacitance and resistance of the source, \nand ...",
+      "topicId": "signal-integrity",
+      "source": "MECHENG705_S1_2025.pdf",
+      "sourceArea": "Past Exam",
+      "page": 6
+    },
+    {
+      "id": "exam-018",
+      "prompt": "Q4. \nA transistor is used in a switching circuit. The transistor has a junction-to-case thermal \nresistance of 1.57°C/W. The parameters of the transistor are summarised in the table \nbelow. \n \n \n(a) What would be the junction temperature of the transistor if the case temperature is \n75°C and it is continuously dissipating 70 W of electrical power? \n (3 marks) \n(b) What is the allowable power dissipation if the case temperature is now 95°C, and \nwhat will the junction temperature be? Is it safe to operate? \n (7 marks) \n(c) Explain why copper shield is not effective when the electromagnetic noise, such as \nthat coming from the main transformer (50 Hz AC main), but is effective in \nshielding electromagnetic noise in the radio frequency spectrum? \n (3 marks) \n \n(d) What is the minimum thickness of a stainless steel 430 (µr = 800, σ = 1.7×10\n6 S/m) \nto shield the electromagnetic noise from ...",
+      "topicId": "model-id",
+      "source": "MECHENG705_S1_2025.pdf",
+      "sourceArea": "Past Exam",
+      "page": 7
+    }
+  ]
+}
