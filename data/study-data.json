@@ -7,9 +7,11 @@
       "note": "No initial assignment document was found in the workspace or supplied file list. Add it to SOURCE_PDFS if it should become a cited source."
     },
     "counts": {
-      "topics": 11,
-      "flashcards": 111,
-      "examPrompts": 18
+      "topics": 10,
+      "flashcards": 102,
+      "examPrompts": 15,
+      "practiceQuestions": 14,
+      "pastExamQuestions": 10
     },
     "sources": [
       {
@@ -132,6 +134,11 @@
         "path": "C:\\Users\\Alex\\Downloads\\MECHENG705_rote_memorisation_cards.xlsx",
         "exists": true
       }
+    ],
+    "scopeNotes": [
+      "Model Identification is currently non-examinable and has been removed from summaries, flashcards, quizzes, and practice filters.",
+      "Bumpless control is currently non-examinable and has been removed from memorisation/practice views.",
+      "IFT is kept only at concept/use-case level: know when it can be used, not implementation equations."
     ]
   },
   "topics": [
@@ -193,87 +200,25 @@
       "visual": "control-loop"
     },
     {
-      "id": "model-id",
-      "title": "Model Identification",
-      "area": "Model ID",
-      "whyItMatters": "Controller performance depends on the plant model, so model identification questions usually test assumptions, parameter fitting, and validation logic.",
-      "keyIdeas": [
-        "Model identification has two distinct stages: choose the model structure, then estimate the unknown parameters.",
-        "The chosen model structure encodes assumptions, such as linear friction, negligible inductance, constant motor constants, and operation away from saturation.",
-        "For a simple DC motor model, voltage balance links applied voltage, winding current, resistance, back EMF, and angular velocity.",
-        "Torque is proportional to armature current through the torque constant, usually treated as equal to the back-EMF constant in SI units.",
-        "The mechanical dynamics balance motor torque against viscous friction and inertia.",
-        "Some parameters can be estimated from steady-state tests, but inertia requires a dynamic test because it only appears during acceleration.",
-        "Stall/locked-rotor tests can estimate winding resistance because omega = 0 makes back EMF zero, but the rotor must not be blocked for long.",
-        "Validation is not the same as fitting: a model should be tested on data that was not used to identify the parameters.",
-        "Poor model fit should be explained by naming missing physics, such as Coulomb friction, saturation, nonlinear friction, supply limits, deadband, sensor delay, or neglected inductance.",
-        "Controller performance depends on model quality, especially when using pole placement or deadbeat designs that assume the plant model is accurate."
-      ],
-      "formulas": [
-        "Voltage equation: v(t) = Ra ia(t) + Kb omega(t)",
-        "Torque equation: tau(t) = Kt ia(t)",
-        "Mechanical equation: J domega/dt = tau(t) - B omega(t)",
-        "Locked rotor, omega = 0: Ra = V / I",
-        "Back EMF constant: Kb = (V - Ra I) / omega",
-        "Viscous friction at no-load steady state: B = tau / omega = Kt I / omega",
-        "At steady state, domega/dt = 0, so motor torque equals viscous friction torque",
-        "Simple model transfer idea: omega(s)/V(s) is first order if armature inductance is neglected",
-        "Time constant can be obtained from rise time or settling time of the speed step response",
-        "Prediction error = measured output - model output",
-        "Validation test: compare model response against separate measured data, not only the fitting data"
-      ],
-      "examMoves": [
-        "State the model assumptions before using equations, especially negligible inductance and linear viscous friction.",
-        "For resistance, set omega = 0 and use the locked-rotor voltage/current relationship.",
-        "For Kb, use no-load steady-state data after accounting for voltage drop across Ra.",
-        "For B, use no-load steady-state current to infer torque, then divide by steady speed.",
-        "For J, say a dynamic test is needed and relate it to the step-response time constant.",
-        "If given two operating points, equate the two Kb expressions to solve for Ra before solving Kb.",
-        "Keep units explicit: Ra in ohms, Kb in V/(rad/s), Kt in Nm/A, B in Nm/(rad/s), J in kg m^2.",
-        "If asked whether the model is good, discuss validation data and missing nonlinear effects rather than only quoting the numerical error."
-      ],
-      "sources": [
-        "MECHENG705 DC Section 4 - Model Identification.pdf",
-        "MECHENG705_rote_memorisation_cards.xlsx"
-      ],
-      "visual": "model-id"
-    },
-    {
       "id": "ift",
       "title": "Iterative Feedback Tuning",
       "area": "IFT",
-      "whyItMatters": "IFT is a data-driven tuning method, so the key is explaining what is updated, what cost is minimized, and why closed-loop data matters.",
+      "whyItMatters": "IFT is examinable only at the concept level here: know when it is useful and why it can tune a controller without first building an accurate plant model.",
       "keyIdeas": [
-        "Iterative Feedback Tuning is a data-driven method for improving controller parameters using closed-loop experimental data.",
-        "IFT does not require an explicit plant model P(z); it assumes a fixed controller structure C(z, rho) and updates the parameter vector rho.",
-        "The parameter vector rho contains the tunable gains, for example rho = [Kp, Ki, Kd]^T for a PID controller.",
-        "The objective function defines what better means; in the slides it is based on squared tracking error over N samples.",
-        "The error convention in the IFT slides is e(rho,k) = y(rho,k) - r(k), which is the negative of the usual r - y convention.",
-        "IFT is gradient-based optimisation: estimate how the cost changes with each parameter, then update the parameters to reduce the cost.",
-        "The gradient components tell how sensitive the objective is to each gain; the Hessian approximates curvature/coupling between gains.",
-        "A Hessian/Newton-style update can move faster than plain gradient descent, but is more sensitive to noisy or poor curvature estimates.",
-        "Because IFT uses real experiments, safety, actuator saturation, noise, repeatability, and step-size selection matter.",
-        "IFT is useful when accurate model identification is difficult but repeated controlled experiments are possible."
+        "Iterative Feedback Tuning is useful when you have a real closed-loop system available for repeated safe experiments, but the plant model is inaccurate, uncertain, or hard to identify.",
+        "IFT tunes the parameters of an already chosen controller structure using measured closed-loop performance data.",
+        "Use IFT when model-based design is weak because the plant has unmodelled dynamics, nonlinearities, or operating-point changes, but experiments are practical and safe.",
+        "Do not focus on implementing the gradient/Hessian details for this scope; focus on the reason for using IFT and the practical conditions that make it appropriate.",
+        "Important limitations are experiment noise, repeatability, actuator saturation, safety limits, and the need for cautious changes to controller parameters."
       ],
       "formulas": [
-        "Controller structure: u(k) = C(z, rho)(r(k) - y(k))",
-        "Parameter vector example: rho = [Kp, Ki, Kd]^T",
-        "IFT slide error convention: e(rho,k) = y(rho,k) - r(k)",
-        "Objective function: J(rho) = (1 / (2N)) sum_{k=1}^N e(rho,k)^2",
-        "Gradient idea: grad J = [dJ/d rho_1, dJ/d rho_2, ...]^T",
-        "Gradient update idea: rho_new = rho_old - alpha grad J",
-        "Newton-style update idea: rho_new = rho_old - H^-1 grad J",
-        "Hessian idea: H_ij = d^2 J / (d rho_i d rho_j)",
-        "Small step size improves safety but slows convergence; large step size can destabilise or overshoot the optimum"
+        "Scope note: no IFT implementation equations need to be memorised for this exam scope.",
+        "Use-case trigger: use IFT when experimental closed-loop data is available and accurate plant modelling is difficult."
       ],
       "examMoves": [
-        "Start by defining rho and the fixed controller structure being tuned.",
-        "Write the cost function before describing the update, because the cost defines the tuning goal.",
-        "Be explicit that the method uses closed-loop experimental data rather than a plant model.",
-        "When explaining derivatives, say they represent sensitivity of the performance cost to each controller parameter.",
-        "If asked about the Hessian, say diagonal terms are curvature with respect to each parameter and off-diagonal terms are parameter coupling.",
-        "Include practical limitations: experiment noise, repeatability, safety, saturation, convergence, and need for cautious step size.",
-        "If asked why IFT is useful, contrast it with model-based pole placement: IFT can tune the real plant directly when the model is inaccurate or unavailable."
+        "If asked when IFT can be used, state that it is a data-driven tuning method for a fixed controller structure on a real closed-loop system.",
+        "Contrast it with model-based pole placement: IFT can improve the real controller even when the mathematical plant model is poor or unavailable.",
+        "Mention practical constraints: safe repeatable experiments, noise, saturation, actuator limits, and cautious parameter updates."
       ],
       "sources": [
         "MECHENG705 DC Section 5 - IFT.pdf",
@@ -916,15 +861,6 @@
       "source": "MECHENG705_rote_memorisation_cards.xlsx"
     },
     {
-      "id": "card-030",
-      "question": "What is bumpless transfer?",
-      "answer": "Switching from manual/open-loop to closed-loop control without a sudden jump in actuator output.",
-      "topic": "Control",
-      "topicId": "control",
-      "priority": "High",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
       "id": "card-031",
       "question": "What is the discrete controller recursion idea?",
       "answer": "u[k] depends on present/past errors and past controller outputs.",
@@ -952,51 +888,6 @@
       "source": "MECHENG705_rote_memorisation_cards.xlsx"
     },
     {
-      "id": "card-034",
-      "question": "What are the two broad steps in model identification?",
-      "answer": "Choose the model form, then identify its parameters.",
-      "topic": "Model ID",
-      "topicId": "model-id",
-      "priority": "Medium",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
-      "id": "card-035",
-      "question": "What DC motor parameter is found by locking the rotor briefly?",
-      "answer": "Winding resistance Ra = V/I, because ω = 0.",
-      "topic": "Model ID",
-      "topicId": "model-id",
-      "priority": "Medium",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
-      "id": "card-036",
-      "question": "What is the no-load back-EMF constant formula idea?",
-      "answer": "Kb = (V − RaI)/ω at steady state.",
-      "topic": "Model ID",
-      "topicId": "model-id",
-      "priority": "Medium",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
-      "id": "card-037",
-      "question": "How is linear viscous friction B found at no-load steady state?",
-      "answer": "B = τ/ω = KtI/ω.",
-      "topic": "Model ID",
-      "topicId": "model-id",
-      "priority": "Medium",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
-      "id": "card-038",
-      "question": "Which DC motor parameter needs a dynamic test?",
-      "answer": "Rotational inertia J.",
-      "topic": "Model ID",
-      "topicId": "model-id",
-      "priority": "Medium",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
       "id": "card-039",
       "question": "What does IFT stand for?",
       "answer": "Iterative Feedback Tuning.",
@@ -1009,33 +900,6 @@
       "id": "card-040",
       "question": "What is the key selling point of IFT?",
       "answer": "It tunes controller parameters using experimental data without requiring a plant model.",
-      "topic": "IFT",
-      "topicId": "ift",
-      "priority": "Medium",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
-      "id": "card-041",
-      "question": "What is the IFT parameter vector usually called?",
-      "answer": "ρ (rho).",
-      "topic": "IFT",
-      "topicId": "ift",
-      "priority": "Low",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
-      "id": "card-042",
-      "question": "What is the typical IFT objective function form?",
-      "answer": "J(ρ) = (1/(2N)) Σ e(ρ,k)².",
-      "topic": "IFT",
-      "topicId": "ift",
-      "priority": "Medium",
-      "source": "MECHENG705_rote_memorisation_cards.xlsx"
-    },
-    {
-      "id": "card-043",
-      "question": "In the IFT slides, what is unusual about the error sign?",
-      "answer": "e(ρ,k) = y(ρ,k) − r(k), the negative of the usual r−y convention.",
       "topic": "IFT",
       "topicId": "ift",
       "priority": "Medium",
@@ -1656,148 +1520,408 @@
   ],
   "examPrompts": [
     {
-      "id": "exam-001",
+      "id": "linked-control-sampling",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Linked Practice",
+      "page": 1,
+      "prompt": "Q1. Suggest a suitable sample time for the following system when: \n𝐺(𝑠) = 𝑠 − 5\n(𝑠 + 6)(𝑠 + 7) \n \na) Discretizing a continuous time controller \nb) Directly designing in the digital domain \nc) Designing via pole placement with parameters 𝜁 = 0.8, 𝜔0 = ..."
+    },
+    {
+      "id": "linked-control-zoh",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Linked Practice",
+      "page": 1,
+      "prompt": "Q2. Determine the pulse transfer functions for the following plants with sample time T \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) =\n𝑠+1\n𝑠+2 \nc) 𝐺(𝑠) ..."
+    },
+    {
+      "id": "linked-control-pole-placement",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Linked Practice",
+      "page": 1,
+      "prompt": "Q3. Design a controller via pole placement to achieve a settling time of 0.5s and an overshoot of 10% for \nthe following plants \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) ..."
+    },
+    {
+      "id": "linked-control-deadbeat",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Linked Practice",
+      "page": 1,
+      "prompt": "Q4. Design deadbeat and ripple-free deadbeat controllers for the following plants at T=0.1s \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) =\n𝑠+1\n𝑠+2 \nc) 𝐺(𝑠) ..."
+    },
+    {
+      "id": "linked-control-discretisation",
+      "topicId": "control",
+      "source": "Practice Questions.pdf",
+      "sourceArea": "Linked Practice",
+      "page": 2,
+      "prompt": "Q5. Discretize the following transfer function using the backwards, forwards, and bilinear rule, and \nproduce a difference equation for each method \n𝐺(𝑠) = 15 + ..."
+    },
+    {
+      "id": "past-2023-q1",
+      "topicId": "control",
+      "source": "MECHENG 705 2023 Final Exam.pdf",
+      "sourceArea": "Past Exam",
+      "page": 2,
+      "year": "2023",
+      "image": "assets/exam-pages/past-2023-q1.jpg",
+      "prompt": "Q1. \nFor part (a) and (b), consider the continuous-time plant with the transfer function. \n \n𝐺𝐺(𝑠𝑠) = 3𝑠𝑠− 6\n𝑠𝑠2 − 𝑠𝑠− 6 \n \n(a) What is the corresponding pulse transfer function 𝐺𝐺(𝑧𝑧) when this plant is discretised in \ncombination with a zero-order hold and sampling time 𝑇𝑇? \n [9 marks] \n \n(b) With reference to the position of the poles, the unit circle in the 𝑧𝑧 domain, and the \nsampling time 𝑇𝑇, comment on the stability of 𝐺𝐺(𝑧𝑧). \n [3 marks] \n \n(c) Suggest a suitable sample time for the following system when discretising a continuous \ntime controller. The frequency response of 𝐺𝐺wn is shown below in Figure 1. Justify \nyour choice of sampling time. \n𝐺𝐺(𝑠𝑠) = 𝑠𝑠− 4\n(𝑠𝑠+ 5)(𝑠𝑠+ 6) \n \nFigure 1 \n [2 marks] \n \n(d) Discretise the following transfer function using the bilinear rule and produce a \ndifference equation \n𝐺𝐺(𝑠𝑠) = 15 + 10\n𝑠𝑠 \n [6 marks] \n \n-45\n-40\n-35\n-30\n-25\n-20\n-15\nMagnitude ..."
+    },
+    {
+      "id": "past-2023-q2",
+      "topicId": "control",
+      "source": "MECHENG 705 2023 Final Exam.pdf",
+      "sourceArea": "Past Exam",
+      "page": 3,
+      "year": "2023",
+      "image": "assets/exam-pages/past-2023-q2.jpg",
+      "prompt": "Q2. \nThe following controller structure in Figure 2 has been suggested for the plant 𝑃𝑃(𝑧𝑧) =\n1\n𝑧𝑧−0.75 \n \nFigure 2 \n \nYou need to choose values of 𝑘𝑘𝑝𝑝 and 𝑘𝑘𝑖𝑖 to achieve a 10% overshoot and 15s settling time for \na unit step input. \n \n(a) What is the closed loop pulse transfer function \n𝑌𝑌(𝑧𝑧)\n𝑅𝑅(𝑧𝑧) in terms of 𝑘𝑘𝑖𝑖 and 𝑘𝑘𝑝𝑝? \n [7 marks] \n \n(b) What should the denominator polynomial of the closed loop system 𝐷𝐷(𝑧𝑧) be to achieve \nthe desired settling time and overshoot? Assume sampling time 𝑇𝑇= 1𝑠𝑠. \n [6 marks] \n \n(c) Find values of 𝑘𝑘𝑖𝑖 and 𝑘𝑘𝑝𝑝 to achieve this response. \n [4 marks] \n \n(d) If a plant is simulated with a controller designed using this pole placement approach, is the \nresponse likely to closely match the designed overshoot and settling time and why? \n [3 ..."
+    },
+    {
+      "id": "past-2023-q3",
+      "topicId": "thermal",
+      "source": "MECHENG 705 2023 Final Exam.pdf",
+      "sourceArea": "Past Exam",
+      "page": 4,
+      "year": "2023",
+      "image": "assets/exam-pages/past-2023-q3.jpg",
+      "prompt": "Q3. \n(a) There are THREE common methods to cool electronic devices. Briefly discuss these \nTHREE techniques in terms of how the y cool the devices , their advantages, and their \ndisadvantages. \n [6 marks] \n \n(b) A driver consisting of an NPN transistor is used to control an electromagnetic coil , as \nshown in Figure 3(a) below. The transistor electrical characteristic is shown in Figure 3(b). \n \n(i) If a + 5V from a digital controller is connected to the input of the driver, calculate \nthe junction temperature of the transistor , and is it safe to operate if the ambient \ntemperature if 50℃? \n [10 marks] \n \n(ii) Explain why a flywheel diode is connected across the solenoid? \n [4 marks] \n \nThe parameters of the transistor is as follows: - \n \nθJC = 10℃/W; θCA = 58℃/W Tjmax = 150℃; VBE (sat) = 0.7V; VCE(sat) = 0.5V \n \n \n(a) \n \n(b) \nFigure ..."
+    },
+    {
+      "id": "past-2023-q4",
+      "topicId": "signal-integrity",
+      "source": "MECHENG 705 2023 Final Exam.pdf",
+      "sourceArea": "Past Exam",
+      "page": 5,
+      "year": "2023",
+      "image": "assets/exam-pages/past-2023-q4.jpg",
+      "prompt": "Q4. (a) You are measuring a 500 MHz digital signal with 1 ns rise time and 0.5 ns fall time. What is the minimum oscilloscope bandwidth needed? (b) Discuss crosstalk and ground bounce in signal integrity and how they can be minimised. (c) A copper sheet shields a circuit board from a 100 MHz EMI source 1 metre away. Find the minimum thickness for at least 70 dB absorption loss and calculate reflection-loss shielding effectiveness."
+    },
+    {
+      "id": "past-2024-q1",
+      "topicId": "control",
+      "source": "MECHENG705_S1_2024.pdf",
+      "sourceArea": "Past Exam",
+      "page": 2,
+      "year": "2024",
+      "image": "assets/exam-pages/past-2024-q1.jpg",
+      "prompt": "Q1. \nFor parts (a) and (b), consider the continuous-time plant with the transfer function \n \n𝐺𝐺(𝑠𝑠) = 1\n𝑠𝑠 −1 \n \n(a) What is the corresponding pulse transfer function G(z) when this plant is discretised in \ncombination with a zero-order hold and sampling time T\ns ? \n (9 marks) \n \n(b) With reference to the position of the poles, the unit circle in the z domain, and the \nsampling time T\ns, comment on the stability of G(z). \n (3 marks) \n \n(c) Suggest two suitable sample times for a discrete controller for the following system \nG(s). One for discretising a continuous controller and one for a discrete controller \ndesign using a discretised plant model. The frequency response of G(s) is shown in \nFigure 1. Justify your choice of sampling times. \n𝐺𝐺(𝑠𝑠) = 1\n2𝑠𝑠+ 1 \n \n \nFigure 1 \n (4 marks) \n \n(d) Discretise the transfer function of a simple integrator \n𝑈𝑈(𝑠𝑠)\n𝑅𝑅(𝑠𝑠) =\n1\n𝑠𝑠 using the backward ..."
+    },
+    {
+      "id": "past-2024-q3",
+      "topicId": "thermal",
+      "source": "MECHENG705_S1_2024.pdf",
+      "sourceArea": "Past Exam",
+      "page": 4,
+      "year": "2024",
+      "image": "assets/exam-pages/past-2024-q3.jpg",
+      "prompt": "Q3. \n(a) There are THREE common methods to cool electronic devices. Briefly discuss these \nTHREE techniques in terms of how the y cool the devices, their advantages, and their \ndisadvantages. \n (6 marks) \n(b) A driver consisting of an NPN transistor is used to control an electromagnetic solenoid \n(Rsolenoid = 10 Ω), as shown in Figure 3(a) below. The transistor electrical characteristic \nis shown in Figure 3(b). \n \n(i) If a + 5V from a digital controller is connected to the input of the driver, calculate \nthe junction temperature of the transistor , and is it safe to operate if the ambient \ntemperature is 50℃? \n (10 marks) \n \n(ii) Explain why a flywheel diode is connected across the solenoid. (4 marks) \nThe parameters of the transistor are as follows: - \n \nθJC = 10℃/W; θCA = 20℃/W Tjmax = 150℃; VBE (sat) = 0.7V; VCE(sat) = 0.5V \n \n \n(a) \n \n(b) \nFigure ..."
+    },
+    {
+      "id": "past-2024-q4",
+      "topicId": "shielding",
+      "source": "MECHENG705_S1_2024.pdf",
+      "sourceArea": "Past Exam",
+      "page": 5,
+      "year": "2024",
+      "image": "assets/exam-pages/past-2024-q4.jpg",
+      "prompt": "Q4. (a) You are measuring a 250 MHz digital signal with 1 ns rise time and 0.5 ns fall time. What is the minimum oscilloscope bandwidth needed? (b) Explain why copper or aluminium shields are poor for low-frequency magnetic fields and what materials are suitable. (c) A copper sheet shields a circuit board from a 2.4 GHz EMI source 1 metre away. Find thickness for at least 100 dB absorption loss and calculate total shielding effectiveness."
+    },
+    {
+      "id": "past-2025-q1",
+      "topicId": "control",
+      "source": "MECHENG705_S1_2025.pdf",
+      "sourceArea": "Past Exam",
+      "page": 2,
+      "year": "2025",
+      "image": "assets/exam-pages/past-2025-q1.jpg",
+      "prompt": "Q1. \n \nFor Q1(a-c) consider the continuous-time plant with the transfer function \n \n𝐺𝐺(𝑠𝑠) = 1\n𝑠𝑠− 2 \n \n(a) What is the corresponding discrete transfer function 𝐺𝐺 (𝑧𝑧) when this plant is \ndiscretised in combination with a zero-order hold and sampling time Ts? \n (8 marks) \n \n(b) With reference to the position of the poles, the unit circle in the 𝑧𝑧 domain, and the \nsampling time Ts, comment on the stability of 𝐺𝐺(𝑧𝑧). \n (3 marks) \n \n(c) The plant G(s) should be stabilised with a discrete proportional controller using a \ndiscretised model of the plant. Choose kp = 3 for the controller. For which sampling \ntimes is the closed-loop system stable? Show your calculations. \n(7 marks) \n(d) Suggest a suitable sample time for a discrete controller for the system P (s) if you \nare using a discretised plant model. The frequency response of 𝑃𝑃(𝑠𝑠) is shown below \n(see Figure 1). Justify your choice ..."
+    },
+    {
+      "id": "past-2025-q3",
+      "topicId": "probing",
+      "source": "MECHENG705_S1_2025.pdf",
+      "sourceArea": "Past Exam",
+      "page": 6,
+      "year": "2025",
+      "image": "assets/exam-pages/past-2025-q3.jpg",
+      "prompt": "Q3. \n(a) A probe with 10 M Ω and 10 pf input resistance and capacitance, respectively, is \nconnected to an oscilloscope. The probe is connected to observe a signal, and the \nground wire is connected to the signal ground. The waveform displayed on the \noscilloscope screen is shown in Figure 3 below. \n \nFigure 3: Waveform display on the oscilloscope \nIt is suspected that the probe’s ground wire loop contributes to the ringing due to \nparasitic inductance. Estimate the parasitic inductance of the ground loop. \n(5 marks) \n(b) In a setup where the output capacitance and resistance of a signal source are 9 pF \nand 50 Ω, respectively, and an oscilloscope probe is connected to measure the rise \ntime of the signal. The oscilloscope probe has a capacitance of 10 pF and a \nresistance of 10 MΩ. Calculate \n(i) the rise time contributed by the output capacitance and resistance of the source, \nand ..."
+    },
+    {
+      "id": "past-2025-q4",
+      "topicId": "thermal",
+      "source": "MECHENG705_S1_2025.pdf",
+      "sourceArea": "Past Exam",
+      "page": 7,
+      "year": "2025",
+      "image": "assets/exam-pages/past-2025-q4.jpg",
+      "prompt": "Q4. A transistor switching circuit has junction-to-case thermal resistance of 1.57 deg C/W. (a) Find junction temperature for case temperature 75 deg C and continuous 70 W dissipation. (b) Find allowable power dissipation when case temperature is 95 deg C, state junction temperature, and decide whether operation is safe. (c) Explain why copper shielding is ineffective for 50 Hz mains-transformer magnetic noise but effective at radio frequencies. (d) Find the stainless steel 430 thickness needed for at least 60 dB shielding effectiveness against 50 Hz magnetic noise at 20 mm distance."
+    }
+  ],
+  "practiceQuestions": [
+    {
+      "id": "practice-linked-control-sampling",
+      "topicId": "control",
+      "kind": "linked",
+      "source": "Practice Questions.pdf",
+      "page": 1,
+      "title": "Sample-time choice from bandwidth",
       "prompt": "Q1. Suggest a suitable sample time for the following system when: \n𝐺(𝑠) = 𝑠 − 5\n(𝑠 + 6)(𝑠 + 7) \n \na) Discretizing a continuous time controller \nb) Directly designing in the digital domain \nc) Designing via pole placement with parameters 𝜁 = 0.8, 𝜔0 = ...",
-      "topicId": "control",
-      "source": "Practice Questions.pdf",
-      "sourceArea": "Exam Practice",
-      "page": 1
+      "answer": "Answer outline: identify the relevant bandwidth or closed-loop target first. Use Ts = 2 pi/(N omega_b). Use about N = 30 when discretising an already designed continuous controller, about N = 10 for direct digital design from a discrete plant model, and use the pole-placement bandwidth/desired poles when the question gives zeta and omega_0."
     },
     {
-      "id": "exam-002",
+      "id": "practice-linked-control-zoh",
+      "topicId": "control",
+      "kind": "linked",
+      "source": "Practice Questions.pdf",
+      "page": 1,
+      "title": "ZOH pulse-transfer functions",
       "prompt": "Q2. Determine the pulse transfer functions for the following plants with sample time T \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) =\n𝑠+1\n𝑠+2 \nc) 𝐺(𝑠) ...",
-      "topicId": "control",
-      "source": "Practice Questions.pdf",
-      "sourceArea": "Exam Practice",
-      "page": 1
+      "answer": "Answer outline: for each plant, start with P(z) = ((z - 1)/z) Z{G(s)/s}. Do not substitute s directly. Use partial fractions where needed, take the Z-transform terms, then simplify the rational expression in z."
     },
     {
-      "id": "exam-003",
+      "id": "practice-linked-control-pole-placement",
+      "topicId": "control",
+      "kind": "linked",
+      "source": "Practice Questions.pdf",
+      "page": 1,
+      "title": "Pole-placement controller design",
       "prompt": "Q3. Design a controller via pole placement to achieve a settling time of 0.5s and an overshoot of 10% for \nthe following plants \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) ...",
-      "topicId": "control",
-      "source": "Practice Questions.pdf",
-      "sourceArea": "Exam Practice",
-      "page": 1
+      "answer": "Answer outline: convert overshoot to zeta, use settling time to estimate omega_0, map the desired continuous poles into z using the chosen Ts, write the desired discrete denominator, derive the actual closed-loop denominator, then match coefficients."
     },
     {
-      "id": "exam-004",
+      "id": "practice-linked-control-deadbeat",
+      "topicId": "control",
+      "kind": "linked",
+      "source": "Practice Questions.pdf",
+      "page": 1,
+      "title": "Deadbeat and ripple-free deadbeat design",
       "prompt": "Q4. Design deadbeat and ripple-free deadbeat controllers for the following plants at T=0.1s \na) 𝐺(𝑠) =\n3\n𝑠+3 \nb) 𝐺(𝑠) =\n𝑠+1\n𝑠+2 \nc) 𝐺(𝑠) ...",
-      "topicId": "control",
-      "source": "Practice Questions.pdf",
-      "sourceArea": "Exam Practice",
-      "page": 1
+      "answer": "Answer outline: write the sampled plant P(z), choose a finite-delay target such as Y(z)/R(z) = 1/z^m, then solve C(z) = (1/P(z)) * 1/(z^m - 1). For ripple-free deadbeat, check whether plant zeros or intersample behaviour require a modified target rather than only matching sample instants."
     },
     {
-      "id": "exam-005",
+      "id": "practice-linked-control-discretisation",
+      "topicId": "control",
+      "kind": "linked",
+      "source": "Practice Questions.pdf",
+      "page": 2,
+      "title": "Forward, backward, and bilinear discretisation",
       "prompt": "Q5. Discretize the following transfer function using the backwards, forwards, and bilinear rule, and \nproduce a difference equation for each method \n𝐺(𝑠) = 15 + ...",
-      "topicId": "control",
-      "source": "Practice Questions.pdf",
-      "sourceArea": "Exam Practice",
-      "page": 2
+      "answer": "Answer outline: substitute the requested rule for s: forward Euler, backward Euler, or Tustin/bilinear. Simplify G(z), divide into z^-1 form, then cross-multiply to read off the difference equation."
     },
     {
-      "id": "exam-006",
-      "prompt": "Q5) \n𝐺(𝑠) = 15 + 30\n𝑠 \nUsing forward rectangular rule: \n𝐺(𝑧) = 15 + 30𝑇\n𝑧 − 1 \n𝐺(𝑧) = 15𝑧 + (30𝑇 − 15)\n𝑧 − 1 \n𝑌(𝑧)\n𝑈(𝑧) = 15𝑧 + (30𝑇 − 15)\n𝑧 − 1 \n𝑌(𝑧)(𝑧 − 1) = 𝑈(𝑧)(15𝑧 + (30𝑇 − 15)) \n𝑧𝑌(𝑧)− 𝑌(𝑧) = 15𝑧𝑈(𝑧)+ (30𝑇 − 15)𝑈(𝑧) \n𝑌(𝑧)− 𝑧−1𝑌(𝑧) = 15𝑈(𝑧)+ (30𝑇 − 15)𝑧−1𝑈(𝑧) \n𝑦[𝑘] = 15𝑢[𝑘] + (30𝑇 − 15)𝑢[𝑘 − 1] + 𝑦[𝑘 − 1] \nUsing backward rectangular rule: \n𝐺(𝑧) = 15 + 30𝑧𝑇\n𝑧 − 1 \n𝐺(𝑧) = (15 + 30𝑇)𝑧 − 15\n𝑧 − 1 \n𝑌(𝑧)\n𝑈(𝑧) = (15 + 30𝑇)𝑧 − 15\n𝑧 − 1 \n𝑌(𝑧)(𝑧 − 1) = 𝑈(𝑧)((15 + 30𝑇)𝑧 − 15) \n𝑧𝑌(𝑧)− 𝑌(𝑧) = (15 + 30𝑇)𝑧𝑈(𝑧)− 15𝑈(𝑧) \n𝑌(𝑧)− 𝑧−1𝑌(𝑧) = (15 + 30𝑇)𝑈(𝑧)− 15𝑧−1𝑈(𝑧) \n𝑦[𝑘] = (15 + 30𝑇)𝑢[𝑘] − 15𝑢[𝑘 − 1] + 𝑦[𝑘 − 1] \nUsing bilinear rectangular rule: \n𝐺(𝑧) = 15 + 30𝑇(𝑧 + 1)\n2(𝑧 − 1) \n𝐺(𝑧) = 30(𝑧 − 1)+ 30𝑇(𝑧 + 1)\n2(𝑧 − 1) = 30𝑧 − 30 + 30𝑇𝑧 + 30𝑇\n2𝑧 − 2 = (30 + 30𝑇)𝑧 + (30𝑇 − 30)\n2𝑧 − 2 \n𝑌(𝑧)(2𝑧 − 2) = 𝑈(𝑧)((30 + 30𝑇)𝑧 + (30𝑇 − 30)) \n2𝑌(𝑧)− 2𝑧−1𝑌(𝑧) = (30 + 30𝑇)𝑈(𝑧)+ (30𝑇 − 30)𝑧−1𝑈(𝑧) \n𝑦[𝑘] = 0.5((30 + ...",
-      "topicId": "control",
-      "source": "Practice Questions.pdf",
-      "sourceArea": "Exam Practice",
-      "page": 17
+      "id": "practice-generated-ift-use-case",
+      "topicId": "ift",
+      "kind": "generated",
+      "title": "When IFT is appropriate",
+      "prompt": "A motor speed controller works in simulation but performs poorly on the real rig because friction and load changes are not captured well by the model. The rig can be run repeatedly and safely under supervision. Would IFT be an appropriate tuning method? Explain why and state two practical cautions.",
+      "answer": "Yes. IFT is appropriate because it can tune the real controller from closed-loop experimental data without requiring an accurate plant model. Cautions include experiment repeatability/noise, actuator saturation, safe parameter changes, and avoiding unsafe transients during trials.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
     },
     {
-      "id": "exam-007",
+      "id": "practice-generated-si-bandwidth",
+      "topicId": "signal-integrity",
+      "kind": "generated",
+      "title": "Oscilloscope bandwidth from digital edge",
+      "prompt": "A digital signal has a 1 ns rise time and is clocked at 250 MHz. Estimate the minimum oscilloscope bandwidth using the rise-time rule and the oscillating digital signal rule. Which requirement is larger?",
+      "answer": "Rise-time rule: BW = 0.35/tr = 0.35/1 ns = 350 MHz. Oscillating digital rule: BW = 2.2 fosc = 2.2 * 250 MHz = 550 MHz. Use the larger requirement, about 550 MHz minimum.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
+    },
+    {
+      "id": "practice-generated-probing-loading",
+      "topicId": "probing",
+      "kind": "generated",
+      "title": "Probe capacitance and rise-time loading",
+      "prompt": "A 50 ohm source with 9 pF output capacitance is measured using a probe with 10 pF input capacitance. Estimate the 10-90 percent RC rise time caused by the combined capacitance.",
+      "answer": "Total capacitance is about 19 pF. The RC rise time is t10-90 = 2.2 R C = 2.2 * 50 * 19 pF = 2.09 ns. This shows why probe capacitance can slow a fast edge.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
+    },
+    {
+      "id": "practice-generated-emi-chain",
+      "topicId": "emi-emc",
+      "kind": "generated",
+      "title": "Classify the EMI chain",
+      "prompt": "A switching converter causes resets in a nearby microcontroller through noise coupled onto a shared cable. Identify the source, coupling path, and victim, then suggest one mitigation for each part of the chain.",
+      "answer": "Source: switching converter; reduce dI/dt, snub, filter, or improve layout. Coupling path: shared cable/common impedance/radiation path; separate routing, shielding, filtering, or improve return path. Victim: microcontroller reset/input circuitry; add filtering, hysteresis, decoupling, or improve grounding at the victim.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
+    },
+    {
+      "id": "practice-generated-emi-design-filter",
+      "topicId": "emi-design",
+      "kind": "generated",
+      "title": "RC filter cutoff choice",
+      "prompt": "You need to reduce 10 MHz noise on a slow sensor line whose useful signal bandwidth is below 1 kHz. Explain why an RC low-pass filter is reasonable and choose whether the cutoff should be closer to 1 kHz or 10 MHz.",
+      "answer": "An RC low-pass is reasonable because the useful signal is slow while the noise is much higher frequency. The cutoff should be above the useful sensor bandwidth but far below 10 MHz, so closer to the kHz range than the MHz range. The exact value must preserve signal timing while attenuating the interference.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
+    },
+    {
+      "id": "practice-generated-ground-bounce",
+      "topicId": "grounding",
+      "kind": "generated",
+      "title": "Ground bounce estimate",
+      "prompt": "A return path has 8 nH inductance and a switching current changes by 0.5 A in 2 ns. Estimate the ground-bounce voltage and explain why it can cause logic errors.",
+      "answer": "V_GND approx L dI/dt = 8 nH * (0.5 A / 2 ns) = 2 V. This shifts the local reference ground, so a receiver can see an incorrect input voltage even if the signal conductor itself seems correct.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
+    },
+    {
+      "id": "practice-generated-shielding-skin-depth",
+      "topicId": "shielding",
+      "kind": "generated",
+      "title": "Skin depth trend",
+      "prompt": "For a conductive shield, explain how skin depth changes when frequency increases and why that matters for absorption loss.",
+      "answer": "Skin depth delta = 1/sqrt(pi f mu sigma), so increasing frequency decreases skin depth. For a fixed thickness, t/delta becomes larger, so absorption loss increases at higher frequency.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
+    },
+    {
+      "id": "practice-generated-power-switch-loss",
+      "topicId": "power-electronics",
+      "kind": "generated",
+      "title": "BJT saturated switch loss",
+      "prompt": "A saturated BJT switch has VCE(sat) = 0.4 V and carries 1.5 A continuously. Estimate the conduction loss and state why this matters thermally.",
+      "answer": "P approx VCE(sat) IC = 0.4 V * 1.5 A = 0.6 W. That power becomes heat in the transistor and must be checked against the thermal resistance and maximum junction temperature.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
+    },
+    {
+      "id": "practice-generated-thermal-resistance",
+      "topicId": "thermal",
+      "kind": "generated",
+      "title": "Junction temperature from ambient",
+      "prompt": "A device dissipates 2 W. Its junction-to-case thermal resistance is 5 deg C/W and case-to-ambient thermal resistance is 20 deg C/W. Ambient is 40 deg C. Estimate junction temperature and decide if it is below a 125 deg C limit.",
+      "answer": "theta_JA = theta_JC + theta_CA = 25 deg C/W. Temperature rise = P theta_JA = 2 * 25 = 50 deg C. T_J = 40 + 50 = 90 deg C, which is below 125 deg C, so it is safe under these assumptions.",
+      "source": "Generated by app",
+      "caution": "Generated question: not from supplied practice sheet; check against lecture notes."
+    }
+  ],
+  "pastExamQuestions": [
+    {
+      "id": "past-2023-q1",
       "prompt": "Q1. \nFor part (a) and (b), consider the continuous-time plant with the transfer function. \n \n𝐺𝐺(𝑠𝑠) = 3𝑠𝑠− 6\n𝑠𝑠2 − 𝑠𝑠− 6 \n \n(a) What is the corresponding pulse transfer function 𝐺𝐺(𝑧𝑧) when this plant is discretised in \ncombination with a zero-order hold and sampling time 𝑇𝑇? \n [9 marks] \n \n(b) With reference to the position of the poles, the unit circle in the 𝑧𝑧 domain, and the \nsampling time 𝑇𝑇, comment on the stability of 𝐺𝐺(𝑧𝑧). \n [3 marks] \n \n(c) Suggest a suitable sample time for the following system when discretising a continuous \ntime controller. The frequency response of 𝐺𝐺wn is shown below in Figure 1. Justify \nyour choice of sampling time. \n𝐺𝐺(𝑠𝑠) = 𝑠𝑠− 4\n(𝑠𝑠+ 5)(𝑠𝑠+ 6) \n \nFigure 1 \n [2 marks] \n \n(d) Discretise the following transfer function using the bilinear rule and produce a \ndifference equation \n𝐺𝐺(𝑠𝑠) = 15 + 10\n𝑠𝑠 \n [6 marks] \n \n-45\n-40\n-35\n-30\n-25\n-20\n-15\nMagnitude ...",
       "topicId": "control",
       "source": "MECHENG 705 2023 Final Exam.pdf",
       "sourceArea": "Past Exam",
-      "page": 2
+      "page": 2,
+      "year": "2023",
+      "question": "Q1",
+      "image": "assets/exam-pages/past-2023-q1.jpg",
+      "answer": "Plan: use ZOH pulse-transfer for parts (a,b), z-plane pole location for stability, Ts = 2 pi/(N omega) for the Bode/sample-time part, and Tustin substitution for the difference-equation part."
     },
     {
-      "id": "exam-008",
+      "id": "past-2023-q2",
       "prompt": "Q2. \nThe following controller structure in Figure 2 has been suggested for the plant 𝑃𝑃(𝑧𝑧) =\n1\n𝑧𝑧−0.75 \n \nFigure 2 \n \nYou need to choose values of 𝑘𝑘𝑝𝑝 and 𝑘𝑘𝑖𝑖 to achieve a 10% overshoot and 15s settling time for \na unit step input. \n \n(a) What is the closed loop pulse transfer function \n𝑌𝑌(𝑧𝑧)\n𝑅𝑅(𝑧𝑧) in terms of 𝑘𝑘𝑖𝑖 and 𝑘𝑘𝑝𝑝? \n [7 marks] \n \n(b) What should the denominator polynomial of the closed loop system 𝐷𝐷(𝑧𝑧) be to achieve \nthe desired settling time and overshoot? Assume sampling time 𝑇𝑇= 1𝑠𝑠. \n [6 marks] \n \n(c) Find values of 𝑘𝑘𝑖𝑖 and 𝑘𝑘𝑝𝑝 to achieve this response. \n [4 marks] \n \n(d) If a plant is simulated with a controller designed using this pole placement approach, is the \nresponse likely to closely match the designed overshoot and settling time and why? \n [3 ...",
       "topicId": "control",
       "source": "MECHENG 705 2023 Final Exam.pdf",
       "sourceArea": "Past Exam",
-      "page": 3
+      "page": 3,
+      "year": "2023",
+      "question": "Q2",
+      "image": "assets/exam-pages/past-2023-q2.jpg",
+      "answer": "Plan: derive the closed-loop transfer function with the PI structure, compute desired z-plane denominator from overshoot/settling specs, then match coefficients for kp and ki. The final discussion should mention model mismatch."
     },
     {
-      "id": "exam-009",
+      "id": "past-2023-q3",
       "prompt": "Q3. \n(a) There are THREE common methods to cool electronic devices. Briefly discuss these \nTHREE techniques in terms of how the y cool the devices , their advantages, and their \ndisadvantages. \n [6 marks] \n \n(b) A driver consisting of an NPN transistor is used to control an electromagnetic coil , as \nshown in Figure 3(a) below. The transistor electrical characteristic is shown in Figure 3(b). \n \n(i) If a + 5V from a digital controller is connected to the input of the driver, calculate \nthe junction temperature of the transistor , and is it safe to operate if the ambient \ntemperature if 50℃? \n [10 marks] \n \n(ii) Explain why a flywheel diode is connected across the solenoid? \n [4 marks] \n \nThe parameters of the transistor is as follows: - \n \nθJC = 10℃/W; θCA = 58℃/W Tjmax = 150℃; VBE (sat) = 0.7V; VCE(sat) = 0.5V \n \n \n(a) \n \n(b) \nFigure ...",
-      "topicId": "control",
+      "topicId": "thermal",
       "source": "MECHENG 705 2023 Final Exam.pdf",
       "sourceArea": "Past Exam",
-      "page": 4
+      "page": 4,
+      "year": "2023",
+      "question": "Q3",
+      "image": "assets/exam-pages/past-2023-q3.jpg",
+      "answer": "Plan: for cooling, compare heat sinks/radiators, heat pipes, and airflow/conduction paths. For the transistor, find dissipated power, theta_JA = theta_JC + theta_CA, then T_J = T_A + theta_JA P_D. The diode provides an inductive current path when switching off."
     },
     {
-      "id": "exam-010",
-      "prompt": "Q4. \n(a) You are measuring a digital signal with an oscillating frequency of 500 MHz . The digital \nsignal has a rise and fall time of 1 ns and 0.5 ns , respectively. What is the minimum \nbandwidth of the oscilloscope to correctly observe this signal? \n [4 marks] \n \n(b) With respect to signal integrity, discuss what crosstalk and ground bounce are and how \nthese can be minimised. \n [6 marks] \n \n \n(c) A copper sheet shields an electronics circuit board from a 100 MHz electromagnetic \ninterference source 1 metre away. You are given the following parameters. \nAbsolute permeability, µ0: 4π ×10— 7 H/m \nRelative permeability of copper, µr: 1 \nConductivity of copper, σ: 5.7 × 107 S \n \n(i) What is the minimum thickness of the copper sheet so that the shielding \neffectiveness of absorption loss is at least 70 dB? \n \n [4 marks] \n \n(ii) Calculate the shielding effectiveness of reflection loss with ...",
-      "topicId": "model-id",
+      "id": "past-2023-q4",
+      "prompt": "Q4. (a) You are measuring a 500 MHz digital signal with 1 ns rise time and 0.5 ns fall time. What is the minimum oscilloscope bandwidth needed? (b) Discuss crosstalk and ground bounce in signal integrity and how they can be minimised. (c) A copper sheet shields a circuit board from a 100 MHz EMI source 1 metre away. Find the minimum thickness for at least 70 dB absorption loss and calculate reflection-loss shielding effectiveness.",
+      "topicId": "signal-integrity",
       "source": "MECHENG 705 2023 Final Exam.pdf",
       "sourceArea": "Past Exam",
-      "page": 5
+      "page": 5,
+      "year": "2023",
+      "question": "Q4",
+      "image": "assets/exam-pages/past-2023-q4.jpg",
+      "answer": "Plan: use the larger of oscilloscope bandwidth rules from oscillation frequency and rise/fall time. For SI discussion, define crosstalk and ground bounce, then tie mitigations to spacing, return paths, reduced loop area, controlled impedance, and decoupling. For shielding, calculate skin depth, absorption loss from thickness, then reflection loss from the shielding equations."
     },
     {
-      "id": "exam-011",
+      "id": "past-2024-q1",
       "prompt": "Q1. \nFor parts (a) and (b), consider the continuous-time plant with the transfer function \n \n𝐺𝐺(𝑠𝑠) = 1\n𝑠𝑠 −1 \n \n(a) What is the corresponding pulse transfer function G(z) when this plant is discretised in \ncombination with a zero-order hold and sampling time T\ns ? \n (9 marks) \n \n(b) With reference to the position of the poles, the unit circle in the z domain, and the \nsampling time T\ns, comment on the stability of G(z). \n (3 marks) \n \n(c) Suggest two suitable sample times for a discrete controller for the following system \nG(s). One for discretising a continuous controller and one for a discrete controller \ndesign using a discretised plant model. The frequency response of G(s) is shown in \nFigure 1. Justify your choice of sampling times. \n𝐺𝐺(𝑠𝑠) = 1\n2𝑠𝑠+ 1 \n \n \nFigure 1 \n (4 marks) \n \n(d) Discretise the transfer function of a simple integrator \n𝑈𝑈(𝑠𝑠)\n𝑅𝑅(𝑠𝑠) =\n1\n𝑠𝑠 using the backward ...",
       "topicId": "control",
       "source": "MECHENG705_S1_2024.pdf",
       "sourceArea": "Past Exam",
-      "page": 2
+      "page": 2,
+      "year": "2024",
+      "question": "Q1",
+      "image": "assets/exam-pages/past-2024-q1.jpg",
+      "answer": "Plan: use ZOH pulse-transfer and z-plane stability for the unstable continuous pole, use sample-time rules for the frequency-response figure, then apply backward rectangular substitution for the integrator difference equation."
     },
     {
-      "id": "exam-012",
-      "prompt": "Q2. \n(a) The closed loop system below (Figure 2) is given to control the plant P(z) using a P -\ncontroller. \n \nFigure 2 \n \nCreate a difference equation for the discrete controller, ensuring a bumpless switching \nfrom manual plant control to closed-loop control at the time t0. Bumpless means that if \nthe system output y(t\n0) equals the desired out y ref(t0), no jump in the actuator value u \nmust happen for the first controller output. \n (5 marks) \n \n(b) The plant characterised by the continuous transfer function 𝑃𝑃(𝑠𝑠) =\n1\n𝑠𝑠−1 should be \nstabilised with a discrete proportional controller using a discretised model of the plant. \nChoose k\np = 2 for the controller. For which sampling times Ts is the closed loop system \nstable? Provide calculations. \n (8 marks) \n \n \n(c) If the transfer function for the plant is 𝐺𝐺(𝑧𝑧) =\n1−𝑒𝑒−3𝑇𝑇𝑇𝑇\n𝑧𝑧−𝑒𝑒−3𝑇𝑇𝑇𝑇. \nDesign for Ts = 0.1s a Deadbeat controller and ...",
-      "topicId": "control",
-      "source": "MECHENG705_S1_2024.pdf",
-      "sourceArea": "Past Exam",
-      "page": 3
-    },
-    {
-      "id": "exam-013",
+      "id": "past-2024-q3",
       "prompt": "Q3. \n(a) There are THREE common methods to cool electronic devices. Briefly discuss these \nTHREE techniques in terms of how the y cool the devices, their advantages, and their \ndisadvantages. \n (6 marks) \n(b) A driver consisting of an NPN transistor is used to control an electromagnetic solenoid \n(Rsolenoid = 10 Ω), as shown in Figure 3(a) below. The transistor electrical characteristic \nis shown in Figure 3(b). \n \n(i) If a + 5V from a digital controller is connected to the input of the driver, calculate \nthe junction temperature of the transistor , and is it safe to operate if the ambient \ntemperature is 50℃? \n (10 marks) \n \n(ii) Explain why a flywheel diode is connected across the solenoid. (4 marks) \nThe parameters of the transistor are as follows: - \n \nθJC = 10℃/W; θCA = 20℃/W Tjmax = 150℃; VBE (sat) = 0.7V; VCE(sat) = 0.5V \n \n \n(a) \n \n(b) \nFigure ...",
-      "topicId": "control",
+      "topicId": "thermal",
       "source": "MECHENG705_S1_2024.pdf",
       "sourceArea": "Past Exam",
-      "page": 4
+      "page": 4,
+      "year": "2024",
+      "question": "Q3",
+      "image": "assets/exam-pages/past-2024-q3.jpg",
+      "answer": "Plan: discuss cooling methods, compute transistor power in saturation, combine thermal resistances, calculate junction temperature, and explain the flywheel diode as the solenoid current decay path."
     },
     {
-      "id": "exam-014",
-      "prompt": "Q4. \n(a) You are measuring a digital signal with an oscillating frequency of 250 MHz. The \ndigital signal has a rise and fall time of 1 ns and 0.5 ns , respectively. What is the \nminimum bandwidth of the oscilloscope to correctly observe this signal? \n (4 marks) \n \n(b) Why is a typical metallic shield made of copper or aluminium unable to shield the \nmagnetic field at low frequency, and what type of materials would be suitable? \n (6 marks) \n \n(c) A copper sheet shields an electronics circuit board from a 2.4 GHz electromagnetic \ninterference source 1 metre away. You are given the following parameters. \n \nAbsolute permeability, µ0: 4π ×10— 7 H/m \nRelative permeability of copper, µr: 1 \nConductivity of copper, σ: 5.7 × 107 S \n \n(i) What is the minimum thickness of the copper sheet so that the shielding \neffectiveness of absorption loss is at least 100 dB? \n (4 marks) \n \n(ii) What is the ...",
-      "topicId": "model-id",
+      "id": "past-2024-q4",
+      "prompt": "Q4. (a) You are measuring a 250 MHz digital signal with 1 ns rise time and 0.5 ns fall time. What is the minimum oscilloscope bandwidth needed? (b) Explain why copper or aluminium shields are poor for low-frequency magnetic fields and what materials are suitable. (c) A copper sheet shields a circuit board from a 2.4 GHz EMI source 1 metre away. Find thickness for at least 100 dB absorption loss and calculate total shielding effectiveness.",
+      "topicId": "shielding",
       "source": "MECHENG705_S1_2024.pdf",
       "sourceArea": "Past Exam",
-      "page": 5
+      "page": 5,
+      "year": "2024",
+      "question": "Q4",
+      "image": "assets/exam-pages/past-2024-q4.jpg",
+      "answer": "Plan: use bandwidth rules for the oscilloscope. For low-frequency magnetic shielding, explain that reflection/eddy-current shielding is weak when skin depth is large, so high-permeability magnetic materials are preferred. For the copper sheet, compute skin depth at 2.4 GHz, thickness from absorption loss, then add reflection loss for total shielding effectiveness."
     },
     {
-      "id": "exam-015",
+      "id": "past-2025-q1",
       "prompt": "Q1. \n \nFor Q1(a-c) consider the continuous-time plant with the transfer function \n \n𝐺𝐺(𝑠𝑠) = 1\n𝑠𝑠− 2 \n \n(a) What is the corresponding discrete transfer function 𝐺𝐺 (𝑧𝑧) when this plant is \ndiscretised in combination with a zero-order hold and sampling time Ts? \n (8 marks) \n \n(b) With reference to the position of the poles, the unit circle in the 𝑧𝑧 domain, and the \nsampling time Ts, comment on the stability of 𝐺𝐺(𝑧𝑧). \n (3 marks) \n \n(c) The plant G(s) should be stabilised with a discrete proportional controller using a \ndiscretised model of the plant. Choose kp = 3 for the controller. For which sampling \ntimes is the closed-loop system stable? Show your calculations. \n(7 marks) \n(d) Suggest a suitable sample time for a discrete controller for the system P (s) if you \nare using a discretised plant model. The frequency response of 𝑃𝑃(𝑠𝑠) is shown below \n(see Figure 1). Justify your choice ...",
       "topicId": "control",
       "source": "MECHENG705_S1_2025.pdf",
       "sourceArea": "Past Exam",
-      "page": 2
+      "page": 2,
+      "year": "2025",
+      "question": "Q1",
+      "image": "assets/exam-pages/past-2025-q1.jpg",
+      "answer": "Plan: use ZOH discretisation, map poles to judge stability, solve proportional-controller stability in z, choose Ts from Bode bandwidth for direct digital design, then discretise the integrator using the requested rule."
     },
     {
-      "id": "exam-016",
-      "prompt": "Q2. \nThe speed of a car is controlled by a PI controller shown in Figure 2.1. \n \nFigure 2.1: Closed-loop control of a car \n(a) What happens when the (well -tuned) closed -loop PI control is turned on at t 0? \nSketch the system output y (speed), error and controller output u for t0 - t4 in Figure \n2.2. \n(4 marks) \n \n \nFigure 2.2: Speed, speed error and actuator output \n \n(b) Create a difference equation for the discrete PI controller, ensuring a bumpless \nswitching from manual plant control to closed- loop control at time t 0. Bumpless \nmeans that if the system output y(t 0) equals the desired out yref(t0), no jump in the \nactuator value u must happen for the first controller output. \n(5 ...",
-      "topicId": "control",
-      "source": "MECHENG705_S1_2025.pdf",
-      "sourceArea": "Past Exam",
-      "page": 4
-    },
-    {
-      "id": "exam-017",
+      "id": "past-2025-q3",
       "prompt": "Q3. \n(a) A probe with 10 M Ω and 10 pf input resistance and capacitance, respectively, is \nconnected to an oscilloscope. The probe is connected to observe a signal, and the \nground wire is connected to the signal ground. The waveform displayed on the \noscilloscope screen is shown in Figure 3 below. \n \nFigure 3: Waveform display on the oscilloscope \nIt is suspected that the probe’s ground wire loop contributes to the ringing due to \nparasitic inductance. Estimate the parasitic inductance of the ground loop. \n(5 marks) \n(b) In a setup where the output capacitance and resistance of a signal source are 9 pF \nand 50 Ω, respectively, and an oscilloscope probe is connected to measure the rise \ntime of the signal. The oscilloscope probe has a capacitance of 10 pF and a \nresistance of 10 MΩ. Calculate \n(i) the rise time contributed by the output capacitance and resistance of the source, \nand ...",
-      "topicId": "signal-integrity",
+      "topicId": "probing",
       "source": "MECHENG705_S1_2025.pdf",
       "sourceArea": "Past Exam",
-      "page": 6
+      "page": 6,
+      "year": "2025",
+      "question": "Q3",
+      "image": "assets/exam-pages/past-2025-q3.jpg",
+      "answer": "Plan: estimate ringing frequency from the oscilloscope figure and use fr = 1/(2 pi sqrt(LC)) to infer loop inductance. For probe loading, combine capacitances and use t10-90 = 2.2RC plus rise-time combination rules."
     },
     {
-      "id": "exam-018",
-      "prompt": "Q4. \nA transistor is used in a switching circuit. The transistor has a junction-to-case thermal \nresistance of 1.57°C/W. The parameters of the transistor are summarised in the table \nbelow. \n \n \n(a) What would be the junction temperature of the transistor if the case temperature is \n75°C and it is continuously dissipating 70 W of electrical power? \n (3 marks) \n(b) What is the allowable power dissipation if the case temperature is now 95°C, and \nwhat will the junction temperature be? Is it safe to operate? \n (7 marks) \n(c) Explain why copper shield is not effective when the electromagnetic noise, such as \nthat coming from the main transformer (50 Hz AC main), but is effective in \nshielding electromagnetic noise in the radio frequency spectrum? \n (3 marks) \n \n(d) What is the minimum thickness of a stainless steel 430 (µr = 800, σ = 1.7×10\n6 S/m) \nto shield the electromagnetic noise from ...",
-      "topicId": "model-id",
+      "id": "past-2025-q4",
+      "prompt": "Q4. A transistor switching circuit has junction-to-case thermal resistance of 1.57 deg C/W. (a) Find junction temperature for case temperature 75 deg C and continuous 70 W dissipation. (b) Find allowable power dissipation when case temperature is 95 deg C, state junction temperature, and decide whether operation is safe. (c) Explain why copper shielding is ineffective for 50 Hz mains-transformer magnetic noise but effective at radio frequencies. (d) Find the stainless steel 430 thickness needed for at least 60 dB shielding effectiveness against 50 Hz magnetic noise at 20 mm distance.",
+      "topicId": "thermal",
       "source": "MECHENG705_S1_2025.pdf",
       "sourceArea": "Past Exam",
-      "page": 7
+      "page": 7,
+      "year": "2025",
+      "question": "Q4",
+      "image": "assets/exam-pages/past-2025-q4.jpg",
+      "answer": "Plan: for parts (a,b), use Tj = Tc + theta_JC P and rearrange for allowable P using the maximum junction temperature from the table. For shielding, contrast low-frequency magnetic field shielding with RF shielding, then use skin depth and absorption-loss equations for stainless steel 430."
     }
   ]
 }

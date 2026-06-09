@@ -58,14 +58,30 @@ function cardsForTopic(topicId = "all") {
   );
 }
 
-function examPromptsForTopic(topicId = "all") {
-  const prompts = topicId === "all"
-    ? studyData.examPrompts
-    : studyData.examPrompts.filter((prompt) => prompt.topicId === topicId);
-  if (!state.query.trim()) return prompts;
+function filterByTopicAndQuery(items, topicId, fields) {
+  const scoped = topicId === "all"
+    ? items
+    : items.filter((item) => item.topicId === topicId);
+  if (!state.query.trim()) return scoped;
   const query = state.query.toLowerCase();
-  return prompts.filter((prompt) =>
-    `${prompt.prompt} ${prompt.source}`.toLowerCase().includes(query)
+  return scoped.filter((item) =>
+    fields.map((field) => item[field] || "").join(" ").toLowerCase().includes(query)
+  );
+}
+
+function practiceQuestionsForTopic(topicId = "all") {
+  return filterByTopicAndQuery(
+    studyData.practiceQuestions || [],
+    topicId,
+    ["title", "prompt", "answer", "source", "caution"]
+  );
+}
+
+function pastExamQuestionsForTopic(topicId = "all") {
+  return filterByTopicAndQuery(
+    studyData.pastExamQuestions || [],
+    topicId,
+    ["year", "question", "prompt", "answer", "source"]
   );
 }
 
@@ -539,13 +555,15 @@ function splitLabelledFormula(line) {
 }
 
 function renderShell(content) {
+  const practiceCount = (studyData.practiceQuestions || []).length;
+  const pastExamCount = (studyData.pastExamQuestions || []).length;
   app.innerHTML = `
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-mark">705</div>
         <div>
           <h1>Study Console</h1>
-          <p>${studyData.metadata.counts.flashcards} cards - ${studyData.metadata.counts.examPrompts} exam prompts</p>
+          <p>${studyData.flashcards.length} cards - ${practiceCount} practice - ${pastExamCount} past exams</p>
         </div>
       </div>
       <div class="nav-group">
@@ -553,7 +571,8 @@ function renderShell(content) {
         ${navButton("dashboard", "Dashboard")}
         ${navButton("flashcards", "Flashcards")}
         ${navButton("quiz", "Quiz")}
-        ${navButton("exam", "Exam Practice")}
+        ${navButton("practice", "Practice Questions")}
+        ${navButton("past-exams", "Past Exams")}
       </div>
       <div class="nav-group">
         <p class="nav-title">Topic Summaries</p>
@@ -570,7 +589,7 @@ function renderShell(content) {
       <div class="topbar">
         <label class="search">
           <span aria-hidden="true">Search</span>
-          <input id="searchBox" value="${escapeHtml(state.query)}" placeholder="Search cards, answers, or exam prompts" />
+          <input id="searchBox" value="${escapeHtml(state.query)}" placeholder="Search cards, answers, practice, or past exams" />
         </label>
         <div class="top-actions">
           <button class="btn secondary" data-action="reset-progress">Reset Progress</button>
@@ -613,7 +632,9 @@ function navButton(route, label) {
 function renderDashboard() {
   const knownCards = Object.values(progress.cards).filter((value) => value === "known").length;
   const hardCards = Object.values(progress.cards).filter((value) => value === "hard").length;
-  const highPriority = studyData.flashcards.filter((card) => card.priority === "High").length;
+  const practiceCount = (studyData.practiceQuestions || []).length;
+  const pastExamCount = (studyData.pastExamQuestions || []).length;
+  const scopeNotes = studyData.metadata.scopeNotes || [];
   const topicCards = studyData.topics.map((topic) => {
     const count = studyData.flashcards.filter((card) => card.topicId === topic.id).length;
     return `
@@ -631,11 +652,11 @@ function renderDashboard() {
 
   renderShell(`
     <h1 class="section-heading">MECHENG 705 revision workspace</h1>
-    <p class="lede">Use summary pages as linked hints, then move into flashcards, multiple-choice recall, and past-paper planning prompts.</p>
+    <p class="lede">Use summary pages as linked hints, then move into flashcards, multiple-choice recall, practice questions, and past-paper planning.</p>
     <div class="grid cols-3 panel">
       <div class="card metric"><strong>${studyData.flashcards.length}</strong><span>Flashcards from the supplied workbook</span></div>
-      <div class="card metric"><strong>${knownCards}</strong><span>Marked known</span></div>
-      <div class="card metric"><strong>${highPriority}</strong><span>High-priority cards</span></div>
+      <div class="card metric"><strong>${practiceCount}</strong><span>Practice questions with revealable answers</span></div>
+      <div class="card metric"><strong>${pastExamCount}</strong><span>Past exam pages with context images</span></div>
     </div>
     <div class="grid cols-2 panel">
       <div class="card side-panel">
@@ -657,6 +678,12 @@ function renderDashboard() {
       <h3>Source coverage</h3>
       <p class="lede">Built from the supplied lecture slides, practice questions, past exams, and rote memorisation workbook. Initial assignment document: ${escapeHtml(studyData.metadata.initialAssignmentDocument.status.replaceAll("_", " "))}.</p>
     </div>
+    ${scopeNotes.length ? `
+      <div class="card side-panel panel">
+        <h3>Current exam scope</h3>
+        <ul class="list">${scopeNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join("")}</ul>
+      </div>
+    ` : ""}
     <div class="grid cols-3 panel">${topicCards}</div>
   `);
 }
@@ -933,7 +960,8 @@ function answerQuiz(answer) {
 function renderTopic() {
   const topic = topicById(state.topicId || "control");
   const cards = cardsForTopic(topic.id);
-  const exams = examPromptsForTopic(topic.id).slice(0, 4);
+  const practiceCount = practiceQuestionsForTopic(topic.id).length;
+  const pastExamCount = pastExamQuestionsForTopic(topic.id).length;
   renderShell(`
     <h1 class="section-heading">${escapeHtml(topic.title)}</h1>
     <p class="lede">${escapeHtml(topic.whyItMatters)}</p>
@@ -943,13 +971,12 @@ function renderTopic() {
         ${summaryBlock("Formula / Rule Triggers", topic.formulas)}
         ${summaryBlock("Exam Moves", topic.examMoves)}
         <div class="card side-panel summary-block">
-          <h2>Linked Practice</h2>
-          ${exams.length ? exams.map((exam) => `
-            <article class="exam-card">
-              <span class="tag">${escapeHtml(exam.source)} p.${exam.page}</span>
-              <p>${formatStudyText(exam.prompt)}</p>
-            </article>
-          `).join("") : `<p class="lede">No extracted past-paper prompt matched this topic yet.</p>`}
+          <h2>Question Practice</h2>
+          <p class="lede">${practiceCount} practice questions and ${pastExamCount} past exam pages currently match this topic.</p>
+          <div class="toolbar">
+            <button class="btn" data-route="practice" data-topic="${topic.id}">Practice Questions</button>
+            <button class="btn secondary" data-route="past-exams" data-topic="${topic.id}">Past Exams</button>
+          </div>
         </div>
       </section>
       <aside class="grid">
@@ -982,30 +1009,85 @@ function summaryBlock(title, items) {
   `;
 }
 
-function renderExamPractice() {
+function sourceBadge(item) {
+  if (item.kind === "generated") return `<span class="tag generated">Generated question</span>`;
+  if (item.kind === "linked") return `<span class="tag topic">Linked practice</span>`;
+  return `<span class="tag topic">${escapeHtml(item.year || "Past exam")}</span>`;
+}
+
+function answerReveal(answer, label = "Reveal answer") {
+  return `
+    <details class="answer-details">
+      <summary>${escapeHtml(label)}</summary>
+      <div class="answer-box">${formatStudyText(answer)}</div>
+    </details>
+  `;
+}
+
+function renderPracticeQuestions() {
   const topicId = state.topicId || "all";
-  const prompts = examPromptsForTopic(topicId);
+  const questions = practiceQuestionsForTopic(topicId);
   renderShell(`
-    <h1 class="section-heading">Exam practice</h1>
-    <p class="lede">Use these as planning drills: identify the topic, choose the method, and write the first three lines you would put in an exam answer.</p>
-    <div class="toolbar">${topicSelect("exam", topicId)}</div>
+    <h1 class="section-heading">Practice questions</h1>
+    <p class="lede">Linked questions come from the supplied practice sheet. Generated questions fill non-control gaps and are flagged because they should be checked against the lectures.</p>
+    <div class="toolbar">${topicSelect("practice", topicId)}</div>
     <div class="grid cols-2 panel">
-      ${prompts.map((prompt) => {
-        const topic = topicById(prompt.topicId);
+      ${questions.map((question) => {
+        const topic = topicById(question.topicId);
         return `
-          <article class="card exam-card">
+          <article class="card practice-card">
             <div class="topic-meta">
               <span class="tag topic">${escapeHtml(topic.title)}</span>
-              <span class="tag">${escapeHtml(prompt.source)} p.${prompt.page}</span>
+              ${sourceBadge(question)}
+              <span class="tag">${escapeHtml(question.source)}${question.page ? ` p.${question.page}` : ""}</span>
             </div>
-            <p>${formatStudyText(prompt.prompt)}</p>
+            <h2>${escapeHtml(question.title)}</h2>
+            <p>${formatStudyText(question.prompt)}</p>
+            ${question.caution ? `<p class="caution">${escapeHtml(question.caution)}</p>` : ""}
             <a class="hint-link" href="${topicHref(topic.id)}" target="_blank" rel="noopener">Open hint page</a>
+            ${answerReveal(question.answer)}
           </article>
         `;
-      }).join("") || `<div class="card empty">No exam prompts match the current filter.</div>`}
+      }).join("") || `<div class="card empty">No practice questions match the current filter.</div>`}
     </div>
   `);
-  bindTopicSelect("exam");
+  bindTopicSelect("practice");
+}
+
+function renderPastExams() {
+  const topicId = state.topicId || "all";
+  const questions = pastExamQuestionsForTopic(topicId);
+  renderShell(`
+    <h1 class="section-heading">Past exams</h1>
+    <p class="lede">Past exam pages are grouped by year and kept with page images so figures, tables, and plots stay visible.</p>
+    <div class="toolbar">${topicSelect("past-exams", topicId)}</div>
+    <div class="grid panel past-exam-list">
+      ${questions.map((question) => {
+        const topic = topicById(question.topicId);
+        return `
+          <article class="card past-exam-card">
+            <div class="topic-meta">
+              <span class="tag topic">${escapeHtml(question.year)}</span>
+              <span class="tag">${escapeHtml(question.question)}</span>
+              <span class="tag">${escapeHtml(topic.title)}</span>
+              <span class="tag">${escapeHtml(question.source)} p.${question.page}</span>
+            </div>
+            <div class="past-exam-layout">
+              <div>
+                <p>${formatStudyText(question.prompt)}</p>
+                <a class="hint-link" href="${topicHref(topic.id)}" target="_blank" rel="noopener">Open ${escapeHtml(topic.title)} hint page</a>
+                ${answerReveal(question.answer, "Reveal answer plan")}
+              </div>
+              <a class="exam-image-link" href="${escapeHtml(question.image)}" target="_blank" rel="noopener" aria-label="Open ${escapeHtml(question.year)} ${escapeHtml(question.question)} page image">
+                <img class="exam-page-image" src="${escapeHtml(question.image)}" alt="${escapeHtml(question.year)} ${escapeHtml(question.question)} page image from ${escapeHtml(question.source)}">
+              </a>
+            </div>
+          </article>
+        `;
+      }).join("") || `<div class="card empty">No past exam questions match the current filter.</div>`}
+    </div>
+  `);
+  bindTopicSelect("past-exams");
 }
 
 function diagram(kind) {
@@ -1058,23 +1140,16 @@ function diagram(kind) {
         <path d="M238 120 C220 160, 122 160, 86 116" fill="none" stroke="#89919b" stroke-width="2"/>
         <text x="118" y="178">ground loop</text>
       </svg>`,
-    "model-id": `
-      <svg class="diagram" viewBox="0 0 320 210" role="img" aria-label="model identification workflow">
-        ${commonArrow}
-        <rect class="node accent" x="18" y="76" width="74" height="44" rx="7"/><text x="42" y="102">Data</text>
-        <rect class="node" x="122" y="76" width="82" height="44" rx="7"/><text x="138" y="102">Estimate</text>
-        <rect class="node warn" x="234" y="76" width="78" height="44" rx="7"/><text x="250" y="102">Validate</text>
-        <path d="M92 98 H122" stroke="#4f565f" stroke-width="2" marker-end="url(#arrow)"/>
-        <path d="M204 98 H234" stroke="#4f565f" stroke-width="2" marker-end="url(#arrow)"/>
-      </svg>`,
     ift: `
-      <svg class="diagram" viewBox="0 0 320 210" role="img" aria-label="iterative feedback tuning loop">
+      <svg class="diagram" viewBox="0 0 320 210" role="img" aria-label="iterative feedback tuning use case">
         ${commonArrow}
-        <rect class="node accent" x="32" y="70" width="86" height="42" rx="7"/><text x="54" y="95">Test</text>
-        <rect class="node" x="164" y="70" width="96" height="42" rx="7"/><text x="182" y="95">Gradient</text>
-        <path d="M118 91 H164" stroke="#4f565f" stroke-width="2" marker-end="url(#arrow)"/>
-        <path d="M212 112 C208 164, 74 164, 74 112" fill="none" stroke="#4f565f" stroke-width="2" marker-end="url(#arrow)"/>
-        <text x="106" y="178">update parameters</text>
+        <rect class="node accent" x="24" y="74" width="84" height="42" rx="7"/><text x="46" y="99">Real test</text>
+        <rect class="node" x="128" y="74" width="80" height="42" rx="7"/><text x="146" y="99">Measure</text>
+        <rect class="node warn" x="228" y="74" width="70" height="42" rx="7"/><text x="244" y="99">Tune</text>
+        <path d="M108 95 H128" stroke="#4f565f" stroke-width="2" marker-end="url(#arrow)"/>
+        <path d="M208 95 H228" stroke="#4f565f" stroke-width="2" marker-end="url(#arrow)"/>
+        <path d="M264 116 C256 164, 66 164, 66 116" fill="none" stroke="#4f565f" stroke-width="2" marker-end="url(#arrow)"/>
+        <text x="88" y="178">when the model is poor</text>
       </svg>`,
     method: `
       <svg class="diagram" viewBox="0 0 320 210" role="img" aria-label="EMI design method">
@@ -1113,11 +1188,13 @@ function diagram(kind) {
 }
 
 function render() {
+  if (state.route === "exam") state.route = "past-exams";
   if (state.route === "dashboard") renderDashboard();
   if (state.route === "flashcards") renderFlashcards();
   if (state.route === "quiz") renderQuiz();
   if (state.route === "topic") renderTopic();
-  if (state.route === "exam") renderExamPractice();
+  if (state.route === "practice") renderPracticeQuestions();
+  if (state.route === "past-exams") renderPastExams();
   typesetMath();
 }
 
