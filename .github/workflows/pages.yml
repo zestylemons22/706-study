@@ -28,7 +28,7 @@ jobs:
           rm -rf _site
           mkdir _site
           cp index.html .nojekyll _site/
-          cp -R src data vendor _site/
+          cp -R src data vendor assets _site/
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
